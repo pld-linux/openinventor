@@ -3,7 +3,7 @@ Summary(pl):	Open Inventor - toolkit 3D
 Name:		openinventor
 Version:	2.1.5
 %define	subver	7
-Release:	%{subver}.1
+Release:	%{subver}.2
 License:	LGPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://oss.sgi.com/projects/inventor/download/inventor-%{version}-%{subver}.src.tar.gz
@@ -13,15 +13,17 @@ Patch2:		%{name}-install.patch
 Patch3:		%{name}-nodisplay.patch
 Patch4:		%{name}-paths.patch
 Patch5:		%{name}-nobash.patch
-URL:		http://oss.sgi.com/projects/inventor
-BuildRequires:	XFree86-devel => 3.3.6
+Patch6:		%{name}-gcc3.patch
+Patch7:		%{name}-dprintf.patch
+URL:		http://oss.sgi.com/projects/inventor/
 BuildRequires:	OpenGL-devel
-BuildRequires:	motif-devel
+BuildRequires:	XFree86-devel => 3.3.6
+BuildRequires:	bison
+BuildRequires:	flex
+BuildRequires:	freetype >= 2.0.1
 BuildRequires:	libstdc++-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	freetype >= 2.0.1
-BuildRequires:	flex
-BuildRequires:	bison
+BuildRequires:	motif-devel
 Requires:	OpenGL
 Obsoletes:	sgi-OpenInventor-clients
 Obsoletes:	sgi-OpenInventor-data
@@ -99,10 +101,12 @@ Programy demonstruj±ce mo¿liwo¶ci Open Inventora.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %build
 LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"; export LD_LIBRARY_PATH
-%{__make} OPTIMIZER="%{rpmcflags}" YACC="bison -y"
+%{__make} OPTIMIZER="%{rpmcflags} %{!?debug:-DNDEBUG}" YACC="bison -y"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -117,11 +121,7 @@ install apps/nodes/*/*.so $RPM_BUILD_ROOT%{_libdir}/InventorDSO
 install apps/demos/*/*.about $RPM_BUILD_ROOT%{_datadir}/Inventor/help
 cp -rf apps/examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-(cd $RPM_BUILD_ROOT%{_mandir}
-mv -f man1/inventor.1 man7/inventor.7
-)
-
-gzip -9nf KNOWN.BUGS
+mv -f $RPM_BUILD_ROOT%{_mandir}/man{1/inventor.1,7/inventor.7}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -131,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc KNOWN.BUGS.gz
+%doc KNOWN.BUGS
 %attr(755,root,root) %{_libdir}/lib*.so
 %dir %{_libdir}/InventorDSO
 %attr(755,root,root) %{_libdir}/InventorDSO/*.so

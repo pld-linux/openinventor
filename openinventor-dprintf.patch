@@ -1,0 +1,1121 @@
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/clients/gl4surfeval.c++ inventor/lib/database/src/so/nodes/nurbs/clients/gl4surfeval.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/clients/gl4surfeval.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/clients/gl4surfeval.c++	Sat Oct 12 22:01:03 2002
+@@ -75,14 +75,14 @@
+ void
+ _SoNurbsGL4SurfaceEval::bgnmap2f( long )
+ {
+-    dprintf( "gl_nurbs_bgnmap2f\n" );
++    dbgprintf( "gl_nurbs_bgnmap2f\n" );
+ //    gl_nurbs_bgnmap2f();
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::endmap2f( void )
+ {
+-    dprintf( "endmap2f\n" );
++    dbgprintf( "endmap2f\n" );
+ //    gl_nurbs_endmap2f();
+ }
+ 
+@@ -109,20 +109,20 @@
+ 		//copy points
+ */	
+     } else {
+-	dprintf( "gl_nurbs_bgncps2\n" );
++	dbgprintf( "gl_nurbs_bgncps2\n" );
+ //	gl_nurbs_bgncps2( type, ulower, uupper, uorder, vlower, vupper, vorder );
+ //	for( int j=0; j!= vorder; j++ )
+ //	    for( int i=0; i!= uorder; i++ )
+ //		gl_nurbs_cp4f( &ctlpts[i*ustride + j*vstride] ); /* XXX */
+ //	gl_nurbs_endcps2();
+-//	dprintf( "gl_nurbs_endcps2\n" );
++//	dbgprintf( "gl_nurbs_endcps2\n" );
+     }
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::mapmesh2f( long, long, long, long, long )
+ {
+-//    dprintf( "gl_nurbs_mapmesh2f\n" );
++//    dbgprintf( "gl_nurbs_mapmesh2f\n" );
+ //    gl_nurbs_mapmesh2f( style, umin, umax, vmin, vmax );
+ }
+ 
+@@ -133,97 +133,97 @@
+ void
+ _SoNurbsGL4SurfaceEval::mapgrid2f( long, REAL, REAL, long, REAL, REAL )
+ {
+-    dprintf( "gl_nurbs_mapgrid2f\n" );
++    dbgprintf( "gl_nurbs_mapgrid2f\n" );
+ //    gl_nurbs_mapgrid2f( nu, u0, u1, nv, v0, v1 );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::evalcoord2f( long, REAL, REAL )
+ {
+-    dprintf( "gl_nurbs_evalcoord2f\n" );
++    dbgprintf( "gl_nurbs_evalcoord2f\n" );
+ //    gl_nurbs_evalcoord2f( u, v );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::evalpoint2i( long, long )
+ {
+-    dprintf( "gl_nurbs_evalpoint2i\n" );
++    dbgprintf( "gl_nurbs_evalpoint2i\n" );
+ //    gl_nurbs_evalpoint2i( u, v );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::bgnline( void )
+ {
+-    dprintf( "gl_nurbs_bgnline\n" );
++    dbgprintf( "gl_nurbs_bgnline\n" );
+ //    gl_nurbs_bgnline( 0 );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::endline( void )
+ {
+-    dprintf( "gl_nurbs_endline\n" );
++    dbgprintf( "gl_nurbs_endline\n" );
+ //    gl_nurbs_endline( );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::bgnclosedline( void )
+ {
+-    dprintf( "gl_nurbs_bgnclosedline\n" );
++    dbgprintf( "gl_nurbs_bgnclosedline\n" );
+ //    gl_nurbs_bgnclosedline( 0 );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::endclosedline( void )
+ {
+-    dprintf( "gl_nurbs_endclosedline\n" );
++    dbgprintf( "gl_nurbs_endclosedline\n" );
+ //    gl_nurbs_endclosedline( );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::bgntmesh( void )
+ {
+-    dprintf( "gl_nurbs_bgntmesh\n" );
++    dbgprintf( "gl_nurbs_bgntmesh\n" );
+ //    gl_nurbs_bgntmesh( 0 );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::swaptmesh( void )
+ {
+-    dprintf( "gl_nurbs_swaptmesh\n" );
++    dbgprintf( "gl_nurbs_swaptmesh\n" );
+ //    gl_nurbs_swaptmesh();
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::endtmesh( void )
+ {
+-    dprintf( "gl_nurbs_endtmesh\n" );
++    dbgprintf( "gl_nurbs_endtmesh\n" );
+ //    gl_nurbs_endtmesh();
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::bgnqstrip( void )
+ {
+-    dprintf( "gl_nurbs_bgnqstrip\n" );
++    dbgprintf( "gl_nurbs_bgnqstrip\n" );
+ //    gl_nurbs_bgnqstrip( 0 );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::endqstrip( void )
+ {
+-    dprintf( "gl_nurbs_endqstrip\n" );
++    dbgprintf( "gl_nurbs_endqstrip\n" );
+ //    gl_nurbs_endqstrip();
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::enable( long )
+ {
+-    dprintf( "enable\n" );
++    dbgprintf( "enable\n" );
+ }
+ 
+ void
+ _SoNurbsGL4SurfaceEval::disable( long )
+ {
+-    dprintf( "disable\n" );
++    dbgprintf( "disable\n" );
+ }
+ 
+ void
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/head/glimports.h inventor/lib/database/src/so/nodes/nurbs/head/glimports.h
+--- inventor.orig/lib/database/src/so/nodes/nurbs/head/glimports.h	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/head/glimports.h	Sat Oct 12 22:01:46 2002
+@@ -55,7 +55,7 @@
+ 	return p;
+     } else {
+ #ifndef NDEBUG
+-	dprintf( "malloc failed\n" );
++	dbgprintf( "malloc failed\n" );
+ #endif
+ 	return p;
+     }
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/head/mystdio.h inventor/lib/database/src/so/nodes/nurbs/head/mystdio.h
+--- inventor.orig/lib/database/src/so/nodes/nurbs/head/mystdio.h	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/head/mystdio.h	Sat Oct 12 22:02:19 2002
+@@ -43,20 +43,20 @@
+  */
+ 
+ #ifdef STANDALONE
+-inline void dprintf( char *, ... ) { }
++inline void dbgprintf( char *, ... ) { }
+ #endif
+ 
+ #ifdef LIBRARYBUILD
+ #ifndef NDEBUG
+-#define dprintf printf
++#define dbgprintf printf
+ #else
+ #include <stdio.h>
+-inline void dprintf( char *, ... ) { }
++inline void dbgprintf( char *, ... ) { }
+ #endif
+ #endif
+ 
+ #ifdef GLBUILD
+-inline void dprintf( char *, ... ) { }
++inline void dbgprintf( char *, ... ) { }
+ #endif
+ 
+ #ifndef NULL
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/arc.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/arc.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/arc.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/arc.c++	Sat Oct 12 22:02:59 2002
+@@ -178,20 +178,20 @@
+ 
+     if( ! this ) {
+ #ifndef NDEBUG
+-	dprintf( "\n\nEMPTY TRIM\n\n" );
++	dbgprintf( "\n\nEMPTY TRIM\n\n" );
+ #endif
+ 	return;
+     }
+ 
+ #ifndef NDEBUG
+-    dprintf( "BGNTRIM\n" );
++    dbgprintf( "BGNTRIM\n" );
+ #endif
+     do {
+ 	jarc->show( );
+ 	jarc = jarc->next;
+     } while (jarc != this);
+ #ifndef NDEBUG
+-    dprintf("ENDTRIM\n" );
++    dbgprintf("ENDTRIM\n" );
+ #endif
+ }
+ 
+@@ -212,8 +212,8 @@
+     if( ((p0[0] - p1[0]) > ZERO) || ((p1[0] - p0[0]) > ZERO) ||
+ 	((p0[1] - p1[1]) > ZERO) || ((p1[1] - p0[1]) > ZERO)  ) {
+ #ifndef NDEBUG
+-	dprintf( "x coord = %f %f %f\n", p0[0], p1[0], p0[0] - p1[0] );
+-	dprintf( "y coord = %f %f %f\n", p0[1], p1[1], p0[1] - p1[1] );
++	dbgprintf( "x coord = %f %f %f\n", p0[0], p1[0], p0[0] - p1[0] );
++	dbgprintf( "y coord = %f %f %f\n", p0[1], p1[1], p0[1] - p1[1] );
+ #endif
+ 	return 1;
+     } else {
+@@ -253,7 +253,7 @@
+ 
+         if (jarc->prev == 0 || jarc->next == 0) {
+ #ifndef NDEBUG
+-	    dprintf( "checkjarc:null next/prev pointer\n");
++	    dbgprintf( "checkjarc:null next/prev pointer\n");
+ 	    jarc->print( );
+ #endif
+ 	    return 0;
+@@ -261,7 +261,7 @@
+ 
+         if (jarc->next->prev != jarc) {
+ #ifndef NDEBUG
+-	    dprintf( "checkjarc: pointer linkage screwed up\n");
++	    dbgprintf( "checkjarc: pointer linkage screwed up\n");
+ 	    jarc->print( );
+ #endif
+ 	    return 0;
+@@ -280,7 +280,7 @@
+ 	    if( jarc->prev->pwlArc ) {
+ 		if( jarc->tail()[1] != jarc->prev->rhead()[1] ) {
+ #ifndef NDEBUG
+-		    dprintf( "checkjarc: geometric linkage screwed up 1\n");
++		    dbgprintf( "checkjarc: geometric linkage screwed up 1\n");
+ 		    jarc->prev->show();
+ 		    jarc->show();
+ #endif
+@@ -289,7 +289,7 @@
+ 		if( jarc->tail()[0] != jarc->prev->rhead()[0] ) {
+ 		    
+ #ifndef NDEBUG
+-		    dprintf( "checkjarc: geometric linkage screwed up 2\n");
++		    dbgprintf( "checkjarc: geometric linkage screwed up 2\n");
+ 		    jarc->prev->show();
+ 		    jarc->show();
+ #endif
+@@ -299,7 +299,7 @@
+ 	    if( jarc->next->pwlArc ) {
+ 		if( jarc->next->tail()[0] != jarc->rhead()[0] ) {
+ #ifndef NDEBUG
+-			dprintf( "checkjarc: geometric linkage screwed up 3\n");
++			dbgprintf( "checkjarc: geometric linkage screwed up 3\n");
+ 			jarc->show();
+ 			jarc->next->show();
+ #endif
+@@ -307,7 +307,7 @@
+ 		}
+ 		if( jarc->next->tail()[1] != jarc->rhead()[1] ) {
+ #ifndef NDEBUG
+-			dprintf( "checkjarc: geometric linkage screwed up 4\n");
++			dbgprintf( "checkjarc: geometric linkage screwed up 4\n");
+ 			jarc->show();
+ 			jarc->next->show();
+ #endif
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/arcsorter.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/arcsorter.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/arcsorter.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/arcsorter.c++	Sat Oct 12 22:03:19 2002
+@@ -53,7 +53,7 @@
+ int
+ ArcSorter::qscmp( char *, char * )
+ {
+-    dprintf( "ArcSorter::qscmp: pure virtual called\n" );
++    dbgprintf( "ArcSorter::qscmp: pure virtual called\n" );
+     return 0;
+ }
+ 
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/basiccrveval.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/basiccrveval.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/basiccrveval.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/basiccrveval.c++	Sat Oct 12 22:03:40 2002
+@@ -48,7 +48,7 @@
+ BasicCurveEvaluator::domain1f( REAL, REAL )
+ {
+ #ifndef NDEBUG
+-    dprintf( "domain1f\n" );
++    dbgprintf( "domain1f\n" );
+ #endif
+ }
+ 
+@@ -56,7 +56,7 @@
+ BasicCurveEvaluator::range1f( long type, REAL *, REAL * )
+ {
+ #ifndef NDEBUG
+-    dprintf( "range1f\n" );
++    dbgprintf( "range1f\n" );
+ #endif
+ }
+ 
+@@ -64,7 +64,7 @@
+ BasicCurveEvaluator::enable( long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "enable\n" );
++    dbgprintf( "enable\n" );
+ #endif
+ }
+ 
+@@ -72,7 +72,7 @@
+ BasicCurveEvaluator::disable( long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "disable\n" );
++    dbgprintf( "disable\n" );
+ #endif
+ }
+ 
+@@ -80,7 +80,7 @@
+ BasicCurveEvaluator::bgnmap1f( long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "bgnmap1f\n" );
++    dbgprintf( "bgnmap1f\n" );
+ #endif
+ }
+ 
+@@ -88,7 +88,7 @@
+ BasicCurveEvaluator::map1f( long, REAL, REAL, long, long, REAL * )
+ {
+ #ifndef NDEBUG
+-    dprintf( "map1f\n" );
++    dbgprintf( "map1f\n" );
+ #endif
+ }
+ 
+@@ -96,7 +96,7 @@
+ BasicCurveEvaluator::mapgrid1f( long, REAL, REAL )
+ {
+ #ifndef NDEBUG
+-    dprintf( "mapgrid1f\n" );
++    dbgprintf( "mapgrid1f\n" );
+ #endif
+ }
+ 
+@@ -104,7 +104,7 @@
+ BasicCurveEvaluator::mapmesh1f( long, long, long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "mapmesh1f\n" );
++    dbgprintf( "mapmesh1f\n" );
+ #endif
+ }
+ 
+@@ -112,7 +112,7 @@
+ BasicCurveEvaluator::evalcoord1f( long, REAL )
+ {
+ #ifndef NDEBUG
+-    dprintf( "evalcoord1f\n" );
++    dbgprintf( "evalcoord1f\n" );
+ #endif
+ }
+ 
+@@ -120,7 +120,7 @@
+ BasicCurveEvaluator::endmap1f( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endmap1f\n" );
++    dbgprintf( "endmap1f\n" );
+ #endif
+ }
+ 
+@@ -128,7 +128,7 @@
+ BasicCurveEvaluator::bgnline( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "bgnline\n" );
++    dbgprintf( "bgnline\n" );
+ #endif
+ }
+ 
+@@ -136,6 +136,6 @@
+ BasicCurveEvaluator::endline( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endline\n" );
++    dbgprintf( "endline\n" );
+ #endif
+ }
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/basicsurfeval.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/basicsurfeval.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/basicsurfeval.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/basicsurfeval.c++	Sat Oct 12 22:04:16 2002
+@@ -48,7 +48,7 @@
+ BasicSurfaceEvaluator::domain2f( REAL, REAL, REAL, REAL )
+ {
+ #ifndef NDEBUG
+-    dprintf( "domain2f\n" );
++    dbgprintf( "domain2f\n" );
+ #endif
+ }
+ 
+@@ -56,7 +56,7 @@
+ BasicSurfaceEvaluator::polymode( long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "polymode\n" );
++    dbgprintf( "polymode\n" );
+ #endif
+ }
+ 
+@@ -64,7 +64,7 @@
+ BasicSurfaceEvaluator::range2f( long type, REAL *from, REAL *to )
+ {
+ #ifndef NDEBUG
+-    dprintf( "range2f type %ld, from (%g,%g), to (%g,%g)\n", 
++    dbgprintf( "range2f type %ld, from (%g,%g), to (%g,%g)\n", 
+ 		type, from[0], from[1], to[0], to[1] );
+ #endif
+ }
+@@ -73,7 +73,7 @@
+ BasicSurfaceEvaluator::enable( long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "enable\n" );
++    dbgprintf( "enable\n" );
+ #endif
+ }
+ 
+@@ -81,7 +81,7 @@
+ BasicSurfaceEvaluator::disable( long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "disable\n" );
++    dbgprintf( "disable\n" );
+ #endif
+ }
+ 
+@@ -89,7 +89,7 @@
+ BasicSurfaceEvaluator::bgnmap2f( long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "bgnmap2f\n" );
++    dbgprintf( "bgnmap2f\n" );
+ #endif
+ }
+ 
+@@ -97,7 +97,7 @@
+ BasicSurfaceEvaluator::endmap2f( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endmap2f\n" );
++    dbgprintf( "endmap2f\n" );
+ #endif
+ }
+ 
+@@ -107,7 +107,7 @@
+ 			      REAL * )
+ {
+ #ifndef NDEBUG
+-    dprintf( "map2f\n" );
++    dbgprintf( "map2f\n" );
+ #endif
+ }
+ 
+@@ -115,7 +115,7 @@
+ BasicSurfaceEvaluator::mapgrid2f( long, REAL, REAL, long, REAL, REAL )
+ {
+ #ifndef NDEBUG
+-    dprintf( "mapgrid2f\n" );
++    dbgprintf( "mapgrid2f\n" );
+ #endif
+ }
+ 
+@@ -123,7 +123,7 @@
+ BasicSurfaceEvaluator::mapmesh2f( long, long, long, long, long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "mapmesh2f\n" );
++    dbgprintf( "mapmesh2f\n" );
+ #endif
+ }
+ 
+@@ -131,7 +131,7 @@
+ BasicSurfaceEvaluator::evalcoord2f( long, REAL, REAL )
+ {
+ #ifndef NDEBUG
+-    dprintf( "evalcoord2f\n" );
++    dbgprintf( "evalcoord2f\n" );
+ #endif
+ }
+ 
+@@ -139,7 +139,7 @@
+ BasicSurfaceEvaluator::evalpoint2i( long, long )
+ {
+ #ifndef NDEBUG
+-    dprintf( "evalpoint2i\n" );
++    dbgprintf( "evalpoint2i\n" );
+ #endif
+ }
+ 
+@@ -147,7 +147,7 @@
+ BasicSurfaceEvaluator::bgnline( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "bgnline\n" );
++    dbgprintf( "bgnline\n" );
+ #endif
+ }
+ 
+@@ -155,7 +155,7 @@
+ BasicSurfaceEvaluator::endline( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endline\n" );
++    dbgprintf( "endline\n" );
+ #endif
+ }
+ 
+@@ -163,7 +163,7 @@
+ BasicSurfaceEvaluator::bgnclosedline( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "bgnclosedline\n" );
++    dbgprintf( "bgnclosedline\n" );
+ #endif
+ }
+ 
+@@ -171,7 +171,7 @@
+ BasicSurfaceEvaluator::endclosedline( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endclosedline\n" );
++    dbgprintf( "endclosedline\n" );
+ #endif
+ }
+ 
+@@ -179,7 +179,7 @@
+ BasicSurfaceEvaluator::bgntmesh( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "bgntmesh\n" );
++    dbgprintf( "bgntmesh\n" );
+ #endif
+ }
+ 
+@@ -187,7 +187,7 @@
+ BasicSurfaceEvaluator::swaptmesh( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "swaptmesh\n" );
++    dbgprintf( "swaptmesh\n" );
+ #endif
+ }
+ 
+@@ -195,7 +195,7 @@
+ BasicSurfaceEvaluator::endtmesh( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endtmesh\n" );
++    dbgprintf( "endtmesh\n" );
+ #endif
+ }
+ 
+@@ -203,7 +203,7 @@
+ BasicSurfaceEvaluator::bgnqstrip( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "bgnqstrip\n" );
++    dbgprintf( "bgnqstrip\n" );
+ #endif
+ }
+ 
+@@ -211,7 +211,7 @@
+ BasicSurfaceEvaluator::endqstrip( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endqstrip\n" );
++    dbgprintf( "endqstrip\n" );
+ #endif
+ }
+ 
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/bin.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/bin.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/bin.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/bin.c++	Sat Oct 12 22:04:30 2002
+@@ -123,7 +123,7 @@
+ Bin::show( char *name )
+ {
+ #ifndef NDEBUG
+-    dprintf( "%s\n", name );
++    dbgprintf( "%s\n", name );
+     for( Arc_ptr jarc = firstarc(); jarc; jarc = nextarc() )
+         jarc->show( );
+ #endif
+@@ -160,7 +160,7 @@
+     	    REAL s2 = pts[1].param[0];
+     	    REAL t2 = pts[1].param[1];
+ #ifndef NDEBUG
+-	   dprintf( "arc (%g,%g) (%g,%g)\n", s1, t1, s2, t2 );
++	   dbgprintf( "arc (%g,%g) (%g,%g)\n", s1, t1, s2, t2 );
+ #endif
+ 	}
+     }
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/ccw.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/ccw.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/ccw.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/ccw.c++	Sat Oct 12 22:05:51 2002
+@@ -70,7 +70,7 @@
+     assert( v2 != v2last );
+ 
+ #ifndef NDEBUG
+-    dprintf( "arc_ccw_turn, p = %d\n", 0 );
++    dbgprintf( "arc_ccw_turn, p = %d\n", 0 );
+ #endif
+ 
+     // the arcs lie on the line (0 == v1->param[0])
+@@ -88,7 +88,7 @@
+     while( 1 ) {
+ 	if( v1next->param[0] < v2next->param[0] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case a\n" );
++	    dbgprintf( "case a\n" );
+ #endif
+ 	    assert( v1->param[0] <= v1next->param[0] );
+ 	    assert( v2->param[0] <= v1next->param[0] );
+@@ -100,10 +100,10 @@
+ 		   if( sgn != -1 ) {
+ 			return sgn;
+ 		   } else {
+-			dprintf( "decr\n" );
++			dbgprintf( "decr\n" );
+ 			v1 = v1next--;
+ 			if( v1 == v1last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -113,7 +113,7 @@
+ 	    }
+ 	} else if( v1next->param[0] > v2next->param[0] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case b\n" );
++	    dbgprintf( "case b\n" );
+ #endif
+ 	    assert( v1->param[0] <= v2next->param[0] );
+ 	    assert( v2->param[0] <= v2next->param[0] );
+@@ -125,10 +125,10 @@
+ 		   if( sgn != -1 ) { 
+ 			return sgn;
+ 		   } else {
+-			dprintf( "incr\n" );
++			dbgprintf( "incr\n" );
+ 			v2 = v2next++;
+ 			if( v2 == v2last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -138,17 +138,17 @@
+ 	    }
+ 	} else {
+ #ifndef NDEBUG
+-	    dprintf( "case ab\n" );
++	    dbgprintf( "case ab\n" );
+ #endif
+ 	    if( v1next->param[1] < v2next->param[1] )
+ 		return 0;
+ 	    else if( v1next->param[1] > v2next->param[1] )
+ 		return 1;
+ 	    else {
+-		dprintf( "incr\n" );
++		dbgprintf( "incr\n" );
+ 		v2 = v2next++;
+ 		if( v2 == v2last ) {
+-		    dprintf( "no good results\n" );
++		    dbgprintf( "no good results\n" );
+ 		    return 0; // ill-conditioned, guess answer
+ 		}
+ 	    }
+@@ -171,7 +171,7 @@
+     assert( v2 != v2last );
+ 
+ #ifndef NDEBUG
+-    dprintf( "arc_ccw_turn, p = %d\n", 0 );
++    dbgprintf( "arc_ccw_turn, p = %d\n", 0 );
+ #endif
+ 
+     // the arcs lie on the line (0 == v1->param[0])
+@@ -189,7 +189,7 @@
+     while( 1 ) {
+ 	if( v1next->param[0] > v2next->param[0] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case c\n" );
++	    dbgprintf( "case c\n" );
+ #endif
+ 	    assert( v1->param[0] >= v1next->param[0] );
+ 	    assert( v2->param[0] >= v1next->param[0] );
+@@ -202,9 +202,9 @@
+ 			return sgn;
+ 		    else {
+ 			v1 = v1next--;
+-			dprintf( "decr\n" );
++			dbgprintf( "decr\n" );
+ 			if( v1 == v1last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -214,7 +214,7 @@
+ 	    }
+ 	} else if( v1next->param[0] < v2next->param[0] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case d\n" );
++	    dbgprintf( "case d\n" );
+ #endif
+ 	    assert( v1->param[0] >= v2next->param[0] );
+ 	    assert( v2->param[0] >= v2next->param[0] );
+@@ -227,9 +227,9 @@
+ 			return sgn;
+ 		    else {
+ 			v2 = v2next++;
+-			dprintf( "incr\n" );
++			dbgprintf( "incr\n" );
+ 			if( v2 == v2last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -238,16 +238,16 @@
+ 		    return 1;
+ 	    }
+ 	} else {
+-	    dprintf( "case cd\n" );
++	    dbgprintf( "case cd\n" );
+ 	    if( v1next->param[1] < v2next->param[1] )
+ 		return 1;
+ 	    else if( v1next->param[1] > v2next->param[1] )
+ 		return 0;
+ 	    else {
+ 		v2 = v2next++;
+-		dprintf( "incr\n" );
++		dbgprintf( "incr\n" );
+ 		if( v2 == v2last ) {
+-		    dprintf( "no good results\n" );
++		    dbgprintf( "no good results\n" );
+ 		    return 0; // ill-conditioned, guess answer
+ 		}
+ 	    }
+@@ -270,7 +270,7 @@
+     assert( v2 != v2last );
+ 
+ #ifndef NDEBUG
+-    dprintf( "arc_ccw_turn, p = %d\n", 1 );
++    dbgprintf( "arc_ccw_turn, p = %d\n", 1 );
+ #endif
+ 
+     // the arcs lie on the line (1 == v1->param[1])
+@@ -288,7 +288,7 @@
+     while( 1 ) {
+ 	if( v1next->param[1] < v2next->param[1] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case a\n" );
++	    dbgprintf( "case a\n" );
+ #endif
+ 	    assert( v1->param[1] <= v1next->param[1] );
+ 	    assert( v2->param[1] <= v1next->param[1] );
+@@ -300,10 +300,10 @@
+ 		   if( sgn != -1 ) {
+ 			return sgn;
+ 		   } else {
+-			dprintf( "decr\n" );
++			dbgprintf( "decr\n" );
+ 			v1 = v1next--;
+ 			if( v1 == v1last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -313,7 +313,7 @@
+ 	    }
+ 	} else if( v1next->param[1] > v2next->param[1] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case b\n" );
++	    dbgprintf( "case b\n" );
+ #endif
+ 	    assert( v1->param[1] <= v2next->param[1] );
+ 	    assert( v2->param[1] <= v2next->param[1] );
+@@ -325,10 +325,10 @@
+ 		   if( sgn != -1 ) { 
+ 			return sgn;
+ 		   } else {
+-			dprintf( "incr\n" );
++			dbgprintf( "incr\n" );
+ 			v2 = v2next++;
+ 			if( v2 == v2last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -337,16 +337,16 @@
+ 		    return 1;
+ 	    }
+ 	} else {
+-	    dprintf( "case ab\n" );
++	    dbgprintf( "case ab\n" );
+ 	    if( v1next->param[0] < v2next->param[0] )
+ 		return 1;
+ 	    else if( v1next->param[0] > v2next->param[0] )
+ 		return 0;
+ 	    else {
+-		dprintf( "incr\n" );
++		dbgprintf( "incr\n" );
+ 		v2 = v2next++;
+ 		if( v2 == v2last ) {
+-		    dprintf( "no good results\n" );
++		    dbgprintf( "no good results\n" );
+ 		    return 0; // ill-conditioned, guess answer
+ 		}
+ 	    }
+@@ -369,7 +369,7 @@
+     assert( v2 != v2last );
+ 
+ #ifndef NDEBUG
+-    dprintf( "arc_ccw_turn, p = %d\n", 1 );
++    dbgprintf( "arc_ccw_turn, p = %d\n", 1 );
+ #endif
+ 
+     // the arcs lie on the line (1 == v1->param[1])
+@@ -387,7 +387,7 @@
+     while( 1 ) {
+ 	if( v1next->param[1] > v2next->param[1] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case c\n" );
++	    dbgprintf( "case c\n" );
+ #endif
+ 	    assert( v1->param[1] >= v1next->param[1] );
+ 	    assert( v2->param[1] >= v1next->param[1] );
+@@ -400,9 +400,9 @@
+ 			return sgn;
+ 		    else {
+ 			v1 = v1next--;
+-			dprintf( "decr\n" );
++			dbgprintf( "decr\n" );
+ 			if( v1 == v1last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -412,7 +412,7 @@
+ 	    }
+ 	} else if( v1next->param[1] < v2next->param[1] ) {
+ #ifndef NDEBUG
+-	    dprintf( "case d\n" );
++	    dbgprintf( "case d\n" );
+ 	    assert( v1->param[1] >= v2next->param[1] );
+ 	    assert( v2->param[1] >= v2next->param[1] );
+ #endif
+@@ -425,9 +425,9 @@
+ 			return sgn;
+ 		    else {
+ 			v2 = v2next++;
+-			dprintf( "incr\n" );
++			dbgprintf( "incr\n" );
+ 			if( v2 == v2last ) {
+-			    dprintf( "no good results\n" );
++			    dbgprintf( "no good results\n" );
+ 			    return 0; // ill-conditioned, guess answer
+ 			}
+ 		    }
+@@ -436,16 +436,16 @@
+ 		    return 0;
+ 	    }
+ 	} else {
+-	    dprintf( "case cd\n" );
++	    dbgprintf( "case cd\n" );
+ 	    if( v1next->param[0] < v2next->param[0] )
+ 		return 0;
+ 	    else if( v1next->param[0] > v2next->param[0] )
+ 		return 1;
+ 	    else {
+ 		v2 = v2next++;
+-		dprintf( "incr\n" );
++		dbgprintf( "incr\n" );
+ 		if( v2 == v2last ) {
+-		    dprintf( "no good results\n" );
++		    dbgprintf( "no good results\n" );
+ 		    return 0; // ill-conditioned, guess answer
+ 		}
+ 	    }
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/knotvector.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/knotvector.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/knotvector.c++	Tue Aug 15 14:56:22 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/knotvector.c++	Sat Oct 12 22:06:05 2002
+@@ -128,11 +128,11 @@
+ void Knotvector::show( char *msg )
+ {
+ #ifndef NDEBUG
+-    dprintf( "%s\n", msg ); 
+-    dprintf( "order = %ld, count = %ld\n", order, knotcount );
++    dbgprintf( "%s\n", msg ); 
++    dbgprintf( "order = %ld, count = %ld\n", order, knotcount );
+ 
+     for( int i=0; i<knotcount; i++ )
+-	dprintf( "knot[%d] = %g\n", i, knotlist[i] );
++	dbgprintf( "knot[%d] = %g\n", i, knotlist[i] );
+ #endif
+ }
+ 
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/nurbsinterfac.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/nurbsinterfac.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/nurbsinterfac.c++	Tue Aug 15 14:56:23 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/nurbsinterfac.c++	Sat Oct 12 22:06:20 2002
+@@ -234,7 +234,7 @@
+ 	}
+ 	if( i != count ) {
+ 	    do_nurbserror( 37 );
+-	    dprintf( "point %d (%f,%f)\n", i, x, y );
++	    dbgprintf( "point %d (%f,%f)\n", i, x, y );
+ 	    isDataValid = 0;
+ 	    return;
+ 	}
+@@ -249,7 +249,7 @@
+ 	}
+ 	if( i != count ) {
+ 	    do_nurbserror( 37 );
+-	    dprintf( "point %d (%f,%f)\n", i, x, y );
++	    dbgprintf( "point %d (%f,%f)\n", i, x, y );
+ 	    isDataValid = 0;
+ 	    return;
+ 	}
+@@ -462,7 +462,7 @@
+ 	mapdesc->setBboxsize( mat );
+     } else {
+ #ifndef NDEBUG
+-        dprintf( "ERRORRORRORR!!!\n");
++        dbgprintf( "ERRORRORRORR!!!\n");
+ #endif
+     }
+ }
+@@ -490,7 +490,7 @@
+ 	mapdesc->setBmat( mat, rstride, cstride );
+     } else {
+ #ifndef NDEBUG
+-        dprintf( "ERRORRORRORR!!!\n");
++        dbgprintf( "ERRORRORRORR!!!\n");
+ #endif
+     }
+ }
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/nurbstess.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/nurbstess.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/nurbstess.c++	Tue Aug 15 14:56:23 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/nurbstess.c++	Sat Oct 12 22:06:31 2002
+@@ -61,7 +61,7 @@
+ NurbsTessellator::makeobj( int )
+ {
+ #ifndef NDEBUG
+-   dprintf( "makeobj\n" );
++   dbgprintf( "makeobj\n" );
+ #endif
+ }
+ 
+@@ -69,7 +69,7 @@
+ NurbsTessellator::closeobj( void )
+ {
+ #ifndef NDEBUG
+-   dprintf( "closeobj\n" );
++   dbgprintf( "closeobj\n" );
+ #endif
+ }
+ 
+@@ -77,7 +77,7 @@
+ NurbsTessellator::bgnrender( void )
+ {
+ #ifndef NDEBUG
+-   dprintf( "bgnrender\n" );
++   dbgprintf( "bgnrender\n" );
+ #endif
+ }
+ 
+@@ -85,7 +85,7 @@
+ NurbsTessellator::endrender( void )
+ {
+ #ifndef NDEBUG
+-    dprintf( "endrender\n" );
++    dbgprintf( "endrender\n" );
+ #endif
+ }
+ 
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/patch.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/patch.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/patch.c++	Tue Aug 15 14:56:23 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/patch.c++	Sat Oct 12 22:06:38 2002
+@@ -431,7 +431,7 @@
+ 	}
+     }
+ 
+-    dprintf( "sidesteps %g %g %g %g, stepsize %g %g\n",
++    dbgprintf( "sidesteps %g %g %g %g, stepsize %g %g\n",
+ 	pspec[0].sidestep[0], pspec[0].sidestep[1],
+ 	pspec[1].sidestep[0], pspec[1].sidestep[1],
+ 	pspec[0].stepsize, pspec[1].stepsize );
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/quilt.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/quilt.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/quilt.c++	Tue Aug 15 14:56:23 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/quilt.c++	Sat Oct 12 22:07:02 2002
+@@ -91,12 +91,12 @@
+     for( int i=0; i!= qspec[0].order * qspec[0].width; i++ ) {
+ 	for( int j = 0; j!= qspec[1].order * qspec[1].width; j++ ) {
+ 	    for( int k=0; k < nc; k++ )
+-		dprintf(  "%g ", ps[i*qspec[0].stride + j*qspec[1].stride + k] );
+-	    dprintf(  "\n" );
++		dbgprintf(  "%g ", ps[i*qspec[0].stride + j*qspec[1].stride + k] );
++	    dbgprintf(  "\n" );
+ 	}
+-	dprintf(  "\n" );
++	dbgprintf(  "\n" );
+     }
+-    dprintf( "\n" );
++    dbgprintf( "\n" );
+ #endif
+ }
+ 
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/sorter.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/sorter.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/sorter.c++	Tue Aug 15 14:56:23 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/sorter.c++	Sat Oct 12 22:07:13 2002
+@@ -57,7 +57,7 @@
+ int
+ Sorter::qscmp( char *, char * )
+ {
+-    dprintf( "Sorter::qscmp: pure virtual called\n" );
++    dbgprintf( "Sorter::qscmp: pure virtual called\n" );
+     return 0;
+ }
+ 
+@@ -65,14 +65,14 @@
+ void
+ Sorter::qsexc( char *, char * )
+ {
+-    dprintf( "Sorter::qsexc: pure virtual called\n" );
++    dbgprintf( "Sorter::qsexc: pure virtual called\n" );
+ }
+ 
+ 
+ void
+ Sorter::qstexc( char *, char *, char * )
+ {
+-    dprintf( "Sorter::qstexc: pure virtual called\n" );
++    dbgprintf( "Sorter::qstexc: pure virtual called\n" );
+ }
+ 
+ void
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/splitarcs.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/splitarcs.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/splitarcs.c++	Sun Oct 29 16:04:18 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/splitarcs.c++	Sat Oct 12 22:07:26 2002
+@@ -135,14 +135,14 @@
+ 	     undersampling */
+     if( ! ( jarc1->tail()[0] < (jarc1)->head()[0] ) ) {
+ #ifndef NDEBUG
+-	dprintf( "s difference %f\n",  (jarc1)->tail()[0] - (jarc1)->head()[0] );
++	dbgprintf( "s difference %f\n",  (jarc1)->tail()[0] - (jarc1)->head()[0] );
+ #endif
+ 	::mylongjmp( jumpbuffer, 28 );
+     }
+ 
+     if( ! ( jarc2->tail()[0] > (jarc2)->head()[0] ) ) { 
+ #ifndef NDEBUG
+-	dprintf( "s difference %f\n",  (jarc2)->tail()[0] - (jarc2)->head()[0] );
++	dbgprintf( "s difference %f\n",  (jarc2)->tail()[0] - (jarc2)->head()[0] );
+ #endif
+ 	::mylongjmp( jumpbuffer, 28 );
+     }
+@@ -234,14 +234,14 @@
+ 	     undersampling */
+     if( ! ( jarc1->tail()[1] < (jarc1)->head()[1] ) ) {
+ #ifndef NDEBUG
+-	dprintf( "t difference %f\n",  jarc1->tail()[1] - (jarc1)->head()[1] );
++	dbgprintf( "t difference %f\n",  jarc1->tail()[1] - (jarc1)->head()[1] );
+ #endif
+ 	::mylongjmp( jumpbuffer, 28 );
+     }
+ 
+     if( ! ( jarc2->tail()[1] > (jarc2)->head()[1] ) ) { 
+ #ifndef NDEBUG
+-	dprintf( "t difference %f\n",  jarc2->tail()[1] - (jarc2)->head()[1] );
++	dbgprintf( "t difference %f\n",  jarc2->tail()[1] - (jarc2)->head()[1] );
+ #endif
+ 	::mylongjmp( jumpbuffer, 28 );
+     }
+diff -Nur inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/tobezier.c++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/tobezier.c++
+--- inventor.orig/lib/database/src/so/nodes/nurbs/libnurbs/tobezier.c++	Tue Aug 15 14:56:23 2000
++++ inventor/lib/database/src/so/nodes/nurbs/libnurbs/tobezier.c++	Sat Oct 12 22:07:32 2002
+@@ -360,7 +360,7 @@
+ 	    next->showpts( outpt );
+     } else {
+         for( REAL *lpt=outpt+prewidth; outpt != lpt; outpt += poststride )
+-	    dprintf(  "show %g %g %g\n", outpt[0], outpt[1], outpt[2] );
++	    dbgprintf(  "show %g %g %g\n", outpt[0], outpt[1], outpt[2] );
+     }
+ }
+ 
