@@ -17,6 +17,8 @@ Patch5:		%{name}-nobash.patch
 Patch6:		%{name}-gcc3.patch
 Patch7:		%{name}-dprintf.patch
 Patch8:		%{name}-morearchs.patch
+Patch9:		%{name}-freetype-includes.patch
+Patch10:	%{name}-bison.patch
 URL:		http://oss.sgi.com/projects/inventor/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel => 3.3.6
@@ -104,10 +106,13 @@ Programy demonstruj±ce mo¿liwo¶ci Open Inventora.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
+%patch10 -p1
 
-%build
 # use freetype-based libFL instead of precompiled x86 binary libFL.a
 rm -f libFL/src/libFL.a
+
+%build
 FREETYPE=1; export FREETYPE
 
 LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"; export LD_LIBRARY_PATH
