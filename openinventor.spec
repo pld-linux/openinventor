@@ -9,12 +9,13 @@ Group(pl):	X11/Grafika
 Source0:	ftp://oss.sgi.com/projects/inventor/download/invertor-%{version}-6.src.tar.gz
 #Patch0:		
 BuildRequires:	XFree86-devel => 3.3.6
-BuildRequires:	OpenGL-devel => 4.0
+BuildRequires:	OpenGL-devel
 BuildRequires:	Motif-devel
 URL:		http://oss.sgi.com/projects/inventor
-#Requires:	
+Requires:	OpenGL
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define 	_noautoreqdep	libGL.so.1 libGLU.so.1
 %define	_prefix	/usr/X11R6
 
 %description
