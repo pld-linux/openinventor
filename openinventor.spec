@@ -6,6 +6,9 @@ Version:	2.1.5
 Release:	%{subver}.1
 License:	LGPL
 Group:		X11/Applications/Graphics
+Group(de):	X11/Applikationen/Grafik
+Group(pl):	X11/Aplikacje/Grafika
+Group(pt):	X11/AplicaÁıes/Gr·ficos
 Source0:	ftp://oss.sgi.com/projects/inventor/download/inventor-%{version}-%{subver}.src.tar.gz
 Patch0:		%{name}-glibc.patch
 Patch1:		%{name}-link.patch
@@ -34,14 +37,14 @@ Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 The Open Inventor 3D Toolkit is an object-oriented toolkit that
 simplifies and abstracts the task of writing graphics programming into
-a set of easy to use objects.  These objects range from low-level
+a set of easy to use objects. These objects range from low-level
 data-centered objects such as Sphere, Camera, Material, Light, and
 Group, to high-level application-level objects such as Walk Viewer and
-Material Editor.  The foundation concept in Inventor is the "scene
+Material Editor. The foundation concept in Inventor is the "scene
 database" which defines the objects to be used in an application. When
-using Inventor, a programmer creates, edits, and composes these objects
-into hierarchical 3D scene graphs (i.e. database). A variety of
-fundamental application tasks such as rendering, picking, event
+using Inventor, a programmer creates, edits, and composes these
+objects into hierarchical 3D scene graphs (i.e. database). A variety
+of fundamental application tasks such as rendering, picking, event
 handling, and file reading/writing are built-in operations of all
 objects in the database and thus are simple to invoke.
 
@@ -49,13 +52,20 @@ objects in the database and thus are simple to invoke.
 Open Inventor jest zorientowanym obiektowo toolkitem 3D, ktÛry
 upraszcza zadanie programowania grafiki do zestawu ≥atwych do uøycia
 obiektÛw. Moøna uøywaÊ obiektÛw pocz±wszy od niskiego poziomu,
-zwi±zanego z danymi (np.  kula, kamera, materia≥, ∂wiat≥o) do
+zwi±zanego z danymi (np. kula, kamera, materia≥, ∂wiat≥o) do
 wysokiego, zwi±zanego z aplikacj± (np. edytor materia≥Ûw).
 
 %package devel
 Summary:	Open Inventor for programmers
 Summary(pl):	Open Inventor dla programistÛw
 Group:		X11/Development/Libraries
+Group(de):	X11/Entwicklung/Libraries
+Group(es):	X11/Desarrollo/Bibliotecas
+Group(fr):	X11/Development/Librairies
+Group(pl):	X11/Programowanie/Biblioteki
+Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
+Group(ru):	X11/Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
+Group(uk):	X11/Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name} = %{version}
 Obsoletes:	sgi-OpenInventor-devel
 
@@ -71,6 +81,13 @@ nag≥Ûwkowe, dokumentacjÍ API i przyk≥ady.
 Summary:	Open Inventor static libraries
 Summary(pl):	Biblioteki statyczne Open Inventora
 Group:		X11/Development/Libraries
+Group(de):	X11/Entwicklung/Libraries
+Group(es):	X11/Desarrollo/Bibliotecas
+Group(fr):	X11/Development/Librairies
+Group(pl):	X11/Programowanie/Biblioteki
+Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
+Group(ru):	X11/Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
+Group(uk):	X11/Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -83,6 +100,9 @@ Biblioteki statyczne Open Inventora.
 Summary:	Open Inventor demos
 Summary(pl):	Programy demonstracyjne Open Inventora
 Group:		X11/Applications/Graphics
+Group(de):	X11/Applikationen/Grafik
+Group(pl):	X11/Aplikacje/Grafika
+Group(pt):	X11/AplicaÁıes/Gr·ficos
 Requires:	%{name} = %{version}
 
 %description demos
