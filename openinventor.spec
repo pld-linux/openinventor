@@ -29,7 +29,7 @@ BuildRequires:	motif-devel
 Requires:	OpenGL
 Obsoletes:	sgi-OpenInventor-clients
 Obsoletes:	sgi-OpenInventor-data
-Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1
 
