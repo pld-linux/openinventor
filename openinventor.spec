@@ -37,7 +37,7 @@ extend your 3D programming capabilities."
 
 %build
 ./configure --prefix=%{_prefix}
-%{__make} RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+%{__make} RPM_OPT_FLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
