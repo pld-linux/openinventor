@@ -1,0 +1,50 @@
+--- inventor/lib/database/include/machine.h.orig	Wed Oct 25 23:47:47 2000
++++ inventor/lib/database/include/machine.h	Tue Oct 29 12:58:33 2002
+@@ -150,6 +150,38 @@
+ 
+ #endif /* __i386__ */
+ 
++/*
++ * Linux alpha machine dependent setup
++ */
++
++#ifdef __alpha__
++
++#define MACHINE_WORD_FORMAT DGL_LITTLE_ENDIAN
++#define MACHINE_FLOAT_FORMAT DGL_NON_IEEE
++
++#endif
++
++/*
++ * Linux ppc machine dependent setup
++ */
++
++#ifdef __powerpc__
++
++#define MACHINE_WORD_FORMAT DGL_BIG_ENDIAN
++#define MACHINE_FLOAT_FORMAT DGL_BIG_IEEE
++
++#endif
++
++/*
++ * Linux sparc machine dependent setup
++ */
++
++#ifdef __sparc__
++
++#define MACHINE_WORD_FORMAT DGL_BIG_ENDIAN
++#define MACHINE_FLOAT_FORMAT DGL_BIG_IEEE
++
++#endif
+ 
+ /*
+  * IBM RS/6000 series machine dependent setup
+@@ -309,7 +341,7 @@
+  */
+ 
+ #if MACHINE_FLOAT_FORMAT == DGL_NON_IEEE
+-#ifdef __i386__
++#if defined(__i386__) || defined(__alpha__)
+ void mem_hton_float(float *t, float *f);
+ void mem_ntoh_float(float *t, float *f);
+ void mem_hton_double(double *t, double *f);
