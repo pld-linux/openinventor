@@ -3,7 +3,7 @@ Summary(pl):	Open Inventor
 Name:		OpenInventor
 Version:	2.1.5
 Release:	1
-Copyright:	GPL
+Copyright:	LGPL
 Group:		X11/Graphics
 Group(pl):	X11/Grafika
 Source0:	ftp://oss.sgi.com/projects/inventor/download/invertor-%{version}-6.src.tar.gz
@@ -25,7 +25,7 @@ It presents a programming model based on a 3D scene database that dramatically
 simplifies graphics programming. It includes a rich set of objects such as 
 cubes, polygons, text, materials, cameras, lights, trackballs, handle boxes,
 3D viewers, and editors that speed up your programming time and 
-extend your 3D programming capabilities.
+extend your 3D programming capabilities."
 
 %description -l pl
 
