@@ -118,6 +118,7 @@ FREETYPE=1; export FREETYPE
 LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"; export LD_LIBRARY_PATH
 %{__make} \
 	OPTIMIZER="%{rpmcflags} %{!?debug:-DNDEBUG}" \
+	X11LIBDIR=/usr/X11R6/%{_lib} \
 	YACC="bison -y"
 
 %install
