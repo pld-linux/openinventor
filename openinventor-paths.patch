@@ -1,0 +1,323 @@
+--- inventor/doc/help/GNUmakefile.orig	Tue Nov 14 03:49:52 2000
++++ inventor/doc/help/GNUmakefile	Mon May 28 20:52:16 2001
+@@ -5,6 +5,6 @@
+ 
+ install:
+ 	mkdir -p $(IVHELPDIR)/Inventor
+-	$(INSTALL) -m 644 *.help $(IVHELPDIR)/Inventor
++	$(INSTALL) -m 644 *.help $(IVHELPDIR)
+ 
+ include $(IVCOMMONRULES)
+--- inventor/make/ivcommondefs.orig	Sat Mar 24 03:47:42 2001
++++ inventor/make/ivcommondefs	Mon May 28 20:59:35 2001
+@@ -116,18 +116,18 @@
+ # Inventor install directories.
+ #
+ 
+-IVBINDIR = $(IVROOT)/usr/bin
+-IVLIBDIR = $(IVROOT)/usr/lib
++IVBINDIR = $(IVROOT)/usr/X11R6/bin
++IVLIBDIR = $(IVROOT)/usr/X11R6/lib
+ IVDLIBDIR = $(IVLIBDIR)/InventorDebug
+-IVHDRTOP = $(IVROOT)/usr/include/Inventor
++IVHDRTOP = $(IVROOT)/usr/X11R6/include/Inventor
+ IVHDRDIR = $(IVHDRTOP)/$(HDRSUBDIR)
+-IVMAN1DIR = $(IVROOT)/usr/man/man1
+-IVMAN3DIR = $(IVROOT)/usr/man/man3
+-IVHELPDIR = $(IVROOT)/usr/share/help
+-IVDATADIR = $(IVROOT)/usr/share/data/models
+-IVDEMODIR = $(IVROOT)/usr/demos
+-IVDEMOBINDIR = $(IVDEMODIR)/Inventor
+-IVDEMODATADIR = $(IVDEMODIR)/data/Inventor
++IVMAN1DIR = $(IVROOT)/usr/X11R6/man/man1
++IVMAN3DIR = $(IVROOT)/usr/X11R6/man/man3
++IVHELPDIR = $(IVROOT)/usr/X11R6/share/Inventor/help
++IVDATADIR = $(IVROOT)/usr/X11R6/share/Inventor/data/models
++IVDEMODIR = $(IVROOT)/usr/X11R6/share/Inventor/demos
++IVDEMOBINDIR = $(IVROOT)/usr/X11R6/bin
++IVDEMODATADIR = $(IVROOT)/usr/X11R6/share/Inventor/data/demos
+ 
+ 
+ 
+--- inventor/lib/database/src/so/SoType.c++.orig	Sat Oct 14 12:46:07 2000
++++ inventor/lib/database/src/so/SoType.c++	Mon May 28 21:16:03 2001
+@@ -283,12 +283,7 @@
+ 	    dsoHandle = sgidlopen_version(DSOFile, RTLD_LAZY, "sgi3.0", 0);
+ 	}	    
+ 	if (dsoHandle == NULL && !isRoot) {
+-	    sprintf(DSOFile, "/usr/local/%s/InventorDSO/%s.so", 
+-                                 libDir, nameChars);
+-	    dsoHandle = sgidlopen_version(DSOFile, RTLD_LAZY, "sgi3.0", 0);
+-	}	    
+-	if (dsoHandle == NULL) {
+-	    sprintf(DSOFile,"/usr/%s/InventorDSO/%s.so", libDir, nameChars);
++	    sprintf(DSOFile, "/usr/X11R6/lib/InventorDSO/%s.so", nameChars);
+ 	    dsoHandle = sgidlopen_version(DSOFile, RTLD_LAZY, "sgi3.0", 0);
+ 	}	    
+ 
+--- inventor/libSoXt/include/Inventor/Xt/SoXtComponent.h.orig	Tue Aug 15 14:56:27 2000
++++ inventor/libSoXt/include/Inventor/Xt/SoXtComponent.h	Mon May 28 22:01:56 2001
+@@ -268,7 +268,7 @@
+     // name. By default the file will be searched using:
+     //	    1) current working directory
+     //	    2) SO_HELP_DIR environment variable
+-    //	    3) /usr/share/help/Inventor
++    //	    3) /usr/X11R6/share/Inventor/help
+     //	    4) else bring a no help card found dialog
+     //
+     void    openHelpCard(const char *cardName);
+--- inventor/libSoXt/src/SoXtComponent.c++.orig	Tue Nov 14 03:49:53 2000
++++ inventor/libSoXt/src/SoXtComponent.c++	Mon May 28 22:06:34 2001
+@@ -561,7 +561,7 @@
+ //  card given the file name. By default the file will be searched using:
+ //	    1) current working directory
+ //	    2) SO_HELP_DIR environment variable
+-//	    3) /usr/share/help/Inventor
++//	    3) /usr/X11R6/share/Inventor/help
+ //	    4) else bring a "No help card found message"
+ //
+ // Use: protected
+@@ -622,7 +622,7 @@
+     }
+     
+     // else check for the default location
+-    strcpy(cardPath, "/usr/share/help/Inventor/");
++    strcpy(cardPath, "/usr/X11R6/share/Inventor/help");
+     strcat(cardPath, cardName);
+     if ( access(cardPath, R_OK) == 0 ) {
+ 	strcat(pgrCmd, cardPath);
+--- inventor/libSoXt/src/mtlEdit/SoXtMtlEdit.c++.orig	Tue Aug 15 14:56:28 2000
++++ inventor/libSoXt/src/mtlEdit/SoXtMtlEdit.c++	Mon May 28 22:33:51 2001
+@@ -162,7 +162,7 @@
+ 	"Material Emissive Color"
+ };
+ 
+-static char *mtlDir  = "/usr/share/data/materials";
++static char *mtlDir  = "/usr/X11R6/share/Inventor/data/materials";
+ 
+ static char *slider_labels[] = { (char *)NULL, (char *)NULL, (char *)NULL,
+ 				 (char *)NULL, (char *)NULL, (char *)NULL
+--- inventor/libSoXt/src/mtlEdit/SoXtMtlList.c++.orig	Sat Oct 14 12:46:09 2000
++++ inventor/libSoXt/src/mtlEdit/SoXtMtlList.c++	Mon May 28 22:34:08 2001
+@@ -264,7 +264,7 @@
+     setClassName("SoXtMaterialList");
+     if (dir != NULL)
+ 	materialDir = strdup(dir);
+-    else materialDir = strdup("/usr/share/data/materials");
++    else materialDir = strdup("/usr/X11R6/share/Inventor/data/materials");
+ 
+     callbackList = new SoCallbackList;
+     curPalette = -1;
+--- inventor/libFL/ang/fl.c.orig	Sat Mar 24 03:34:24 2001
++++ inventor/libFL/ang/fl.c	Mon May 28 22:51:55 2001
+@@ -95,7 +95,7 @@
+   NULL
+ };
+ 
+-static char *fontPath = "/usr/share/data/fonts";
++static char *fontPath = "/usr/X11R6/share/Inventor/fonts";
+ int fl_debug = FALSE;
+ 
+ /*
+--- inventor/doc/man/man3/ivm/components/SoXtMaterialList.ivm.orig	Tue Aug 15 14:56:12 2000
++++ inventor/doc/man/man3/ivm/components/SoXtMaterialList.ivm	Mon May 28 23:22:05 2001
+@@ -26,7 +26,7 @@
+ directory for the material palettes. You can have any number of palettes
+ in this directory. A palette is a subdirectory that contains Inventor data
+ files, where each file describes one material. Predefined Inventor materials
+-are found in /usr/share/data/materials.
++are found in /usr/X11R6/share/Inventor/data/materials.
+ }
+ 
+ METHOD addCB addCallback(
+--- inventor/apps/tools/ivview/ivview.c++.orig	Sat Dec  9 04:17:04 2000
++++ inventor/apps/tools/ivview/ivview.c++	Mon May 28 23:42:34 2001
+@@ -714,9 +714,9 @@
+ static void
+ showAboutDialog()
+ {
+-   if (access("/usr/share/help/ivview/ivview.about", R_OK) != 0) {
++   if (access("/usr/X11R6/share/Inventor/help/ivview.about", R_OK) != 0) {
+         system("xmessage 'Sorry, could not find "
+-               "/usr/share/help/ivview/ivview.about' > /dev/null");
++               "/usr/X11R6/share/Inventor/help/ivview.about' > /dev/null");
+         return;
+     }
+ 
+@@ -730,7 +730,7 @@
+         return;
+     }
+ 
+-    sprintf(command, "acroread /usr/share/help/ivview/ivview.about &");
++    sprintf(command, "acroread /usr/X11R6/share/Inventor/help/ivview.about &");
+     system(command);
+ }
+ 
+--- inventor/apps/tools/ivview/GNUmakefile.orig	Mon May 28 18:45:38 2001
++++ inventor/apps/tools/ivview/GNUmakefile	Mon May 28 23:49:37 2001
+@@ -12,7 +12,7 @@
+ all: all_ivbin
+ 
+ install: install_ivbin
+-	mkdir -p $(IVHELPDIR)/$(PROGRAM)
+-	$(INSTALL) -m 644 $(PROGRAM).about $(IVHELPDIR)/$(PROGRAM)
++	mkdir -p $(IVHELPDIR)
++	$(INSTALL) -m 644 $(PROGRAM).about $(IVHELPDIR)
+ 
+ include $(IVCOMMONRULES)
+--- inventor/apps/converters/iv2toiv1/iv2toiv1.orig	Mon Sep 18 11:40:59 2000
++++ inventor/apps/converters/iv2toiv1/iv2toiv1	Mon May 28 23:52:41 2001
+@@ -1,2 +1,2 @@
+ #!/bin/sh
+-/usr/bin/ivdowngrade -v 1.0 $1 $2
++/usr/X11R6/bin/ivdowngrade -v 1.0 $1 $2
+--- inventor/apps/demos/SceneViewer/SoSceneViewer.c++.orig	Tue Nov 14 03:49:51 2000
++++ inventor/apps/demos/SceneViewer/SoSceneViewer.c++	Mon May 28 23:58:47 2001
+@@ -4739,10 +4739,10 @@
+ //
+ ////////////////////////////////////////////////////////////////////////
+ {
+-    if (access("/usr/demos/Inventor/SceneViewer.about", R_OK) != 0)
++    if (access("/usr/X11R6/share/Inventor/help/SceneViewer.about", R_OK) != 0)
+     {
+ 	system("xmessage 'Sorry, could not find "
+-	       "/usr/demos/Inventor/SceneViewer.about' > /dev/null");
++	       "/usr/X11R6/share/Inventor/help/SceneViewer.about' > /dev/null");
+ 	return;
+     }
+ 
+@@ -4757,7 +4757,7 @@
+ 	return;
+     }
+ 
+-    sprintf(command, "acroread /usr/demos/Inventor/SceneViewer.about &");
++    sprintf(command, "acroread /usr/X11R6/Inventor/help/SceneViewer.about &");
+     system(command);
+ }
+ 
+--- inventor/apps/demos/gview/DisplayGraph.c++.orig	Sun Oct 29 16:04:15 2000
++++ inventor/apps/demos/gview/DisplayGraph.c++	Tue May 29 00:06:57 2001
+@@ -67,7 +67,7 @@
+ SbDict	*DisplayGraph::iconDict;
+ 
+ #define ICON_FILE	"gviewIcons.iv"
+-#define ICON_INST_DIR	"/usr/demos/data/Inventor"
++#define ICON_INST_DIR	"/usr/X11R6/share/Inventor/data/demos"
+ #define ICON_ENV_VAR	"IV_GRAPH_DIR"
+ 
+ ////////////////////////////////////////////////////////////////////////
+--- inventor/apps/demos/noodle/Interface.c++.orig	Tue Nov 14 03:49:52 2000
++++ inventor/apps/demos/noodle/Interface.c++	Tue May 29 00:09:49 2001
+@@ -399,9 +399,9 @@
+ void
+ Interface::showAboutDialog()
+ {
+-   if (access("/usr/demos/Inventor/noodle.about", R_OK) != 0) {
++   if (access("/usr/X11R6/share/Inventor/help/noodle.about", R_OK) != 0) {
+         system("xmessage 'Sorry, could not find "
+-               "/usr/demos/Inventor/noodle.about' > /dev/null");
++               "/usr/X11R6/share/Inventor/help/noodle.about' > /dev/null");
+         return;
+     }
+ 
+@@ -415,7 +415,7 @@
+         return;
+     }
+ 
+-    sprintf(command, "acroread /usr/demos/Inventor/noodle.about &");
++    sprintf(command, "acroread /usr/X11R6/share/Inventor/help/noodle.about &");
+     system(command);
+ }
+ 
+--- inventor/apps/demos/qmorf/qmorf.c++.orig	Tue Nov 14 03:49:52 2000
++++ inventor/apps/demos/qmorf/qmorf.c++	Tue May 29 00:12:43 2001
+@@ -415,7 +415,7 @@
+ 	fprintf(stderr, "At least two files must be given, and "
+ 		"they must contain QuadMeshes (qmorf can\n");
+ 	fprintf(stderr, "only morph QuadMesh nodes).\n");
+-	fprintf(stderr, "The directory /usr/share/data/models/CyberHeads "
++	fprintf(stderr, "The directory /usr/X11R6/share/Inventor/data/models/CyberHeads "
+ 		"contains good data to morph.\n");
+ 
+ 	exit(7);
+@@ -437,10 +437,10 @@
+ void
+ showAboutDialog(Widget, XtPointer, XtPointer)
+ {
+-    if (access("/usr/demos/Inventor/qmorf.about", R_OK) != 0)
++    if (access("/usr/X11R6/share/Inventor/help/qmorf.about", R_OK) != 0)
+     {
+ 	system("xmessage 'Sorry, could not find "
+-	       "/usr/demos/Inventor/qmorf.about' > /dev/null");
++	       "/usr/X11R6/share/Inventor/help/qmorf.about' > /dev/null");
+ 	return;
+     }
+     char command[100];
+@@ -454,7 +454,7 @@
+ 	return;
+     }
+ 
+-    sprintf(command, "acroread /usr/demos/Inventor/qmorf.about &");
++    sprintf(command, "acroread /usr/X11R6/share/Inventor/help/qmorf.about &");
+     system(command);
+ }	
+ 
+--- inventor/apps/demos/revo/revo.c++.orig	Tue Nov 14 03:49:52 2000
++++ inventor/apps/demos/revo/revo.c++	Tue May 29 00:15:21 2001
+@@ -79,10 +79,10 @@
+ void
+ showAboutDialog(Widget, XtPointer, XtPointer)
+ {
+-    if (access("/usr/demos/Inventor/revo.about", R_OK) != 0)
++    if (access("/usr/X11R6/share/Inventor/help/revo.about", R_OK) != 0)
+     {
+ 	system("xmessage 'Sorry, could not find "
+-	       "/usr/demos/Inventor/revo.about' > /dev/null");
++	       "/usr/X11R6/share/Inventor/help/revo.about' > /dev/null");
+ 	return;
+     }
+ 
+@@ -97,7 +97,7 @@
+ 	return;
+     }
+ 
+-    sprintf(command, "acroread /usr/demos/Inventor/revo.about &");
++    sprintf(command, "acroread /usr/X11R6/share/Inventor/help/revo.about &");
+     system(command);
+ }	
+ 
+--- inventor/apps/demos/textomatic/textomatic.c++.orig	Tue Nov 14 03:49:52 2000
++++ inventor/apps/demos/textomatic/textomatic.c++	Tue May 29 00:16:29 2001
+@@ -157,10 +157,10 @@
+ void
+ showAboutDialog(Widget, XtPointer, XtPointer)
+ {
+-    if (access("/usr/demos/Inventor/textomatic.about", R_OK) != 0)
++    if (access("/usr/X11R6/share/Inventor/help/textomatic.about", R_OK) != 0)
+     {
+ 	system("xmessage 'Sorry, could not find "
+-	       "/usr/demos/Inventor/textomatic.about' > /dev/null");
++	       "/usr/X11R6/share/Inventor/help/textomatic.about' > /dev/null");
+ 	return;
+     }
+ 
+@@ -174,7 +174,7 @@
+ 	return;
+     }
+ 
+-    sprintf(command, "acroread /usr/demos/Inventor/textomatic.about &");
++    sprintf(command, "acroread /usr/X11R6/share/Inventor/help/textomatic.about &");
+     system(command);
+ }	
+ 
+--- inventor/apps/samples/widgets/MyTextureEd.c++.orig	Sun Oct 29 16:04:17 2000
++++ inventor/apps/samples/widgets/MyTextureEd.c++	Tue May 29 00:18:25 2001
+@@ -228,7 +228,7 @@
+ 
+ 
+ static char *customTextureDir = ".textures";
+-static char *defaultDir = "/usr/share/data/textures";
++static char *defaultDir = "/usr/X11R6/share/Inventor/data/textures";
+ static char *editorTitle = "Texture Editor";
+ static char *noFileNameStr = "<empty>";
+ 

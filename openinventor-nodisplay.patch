@@ -1,0 +1,11 @@
+--- inventor/doc/man/ivman/Main.c++.orig	Sat May 26 01:36:28 2001
++++ inventor/doc/man/ivman/Main.c++	Sat May 26 01:32:51 2001
+@@ -117,7 +117,7 @@
+     SoDB::init();
+     SoNodeKit::init();
+     SoInteraction::init();
+-    SoXt::init(argv[0]);
++/*  SoXt::init(argv[0]);  requires X DISPLAY */
+ 
+     // Process each class in turn
+     ClassDef	*mainCd = NULL, *curCd = NULL, *cd;

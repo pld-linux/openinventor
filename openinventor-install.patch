@@ -1,0 +1,12 @@
+--- inventor/doc/man/man1/GNUmakefile.orig	Mon Sep 18 11:11:13 2000
++++ inventor/doc/man/man1/GNUmakefile	Fri May 25 23:23:34 2001
+@@ -11,6 +11,8 @@
+ 	ivinfo.1 \
+ 	ivview.1
+ 
+-all install: install_man1
++all:
++
++install: install_man1
+ 
+ include $(IVCOMMONRULES)

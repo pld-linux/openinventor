@@ -1,0 +1,42 @@
+--- inventor/tools/ppp/ppp.c++.orig	Tue Aug 15 14:56:29 2000
++++ inventor/tools/ppp/ppp.c++	Fri May 25 19:25:33 2001
+@@ -111,6 +111,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <stdlib.h>
++#include <time.h>
+ 
+ // There is a nasty cyclic make dependency if we try to use libdatabase.a,
+ // so instead just include the following code directly:
+--- inventor/lib/database/include/Inventor/SbTime.h.orig	Sat Oct 14 12:46:07 2000
++++ inventor/lib/database/include/Inventor/SbTime.h	Fri May 25 19:31:14 2001
+@@ -59,6 +59,7 @@
+ #ifndef _SB_TIME_
+ #define _SB_TIME_
+ 
++#include <time.h>
+ #include <sys/time.h>
+ #include <math.h>
+ #include <limits.h>
+--- inventor/lib/database/src/so/actions/SoGLRenderAction.c++.orig	Sat Oct 14 12:46:07 2000
++++ inventor/lib/database/src/so/actions/SoGLRenderAction.c++	Fri May 25 20:05:25 2001
+@@ -64,6 +64,8 @@
+ #include <Inventor/elements/SoViewportRegionElement.h>
+ #include <Inventor/elements/SoShapeStyleElement.h>
+ 
++#define FLT_MAX 3.40282347e+38F
++
+ SO_ACTION_SOURCE(SoGLRenderAction);
+ 
+ ////////////////////////////////////////////////////////////////////////
+--- inventor/apps/converters/ivdowngrade/SoLODV2.c++.orig	Sat Oct 14 12:46:05 2000
++++ inventor/apps/converters/ivdowngrade/SoLODV2.c++	Mon May 28 18:44:00 2001
+@@ -56,6 +56,8 @@
+ #include <Inventor/actions/SoWriteAction.h>
+ #include "SoLODV2.h"
+ 
++#define FLT_MAX 3.40282347e+38F
++
+ SO_NODE_SOURCE(SoLODV2);
+ 
+ ////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,209 @@
+--- inventor/libSoXt/GNUmakefile.orig	Sat Oct 14 12:46:08 2000
++++ inventor/libSoXt/GNUmakefile	Fri May 25 21:24:10 2001
+@@ -5,7 +5,7 @@
+ 
+ LLDLIBS = \
+ 	-lXm -lXt -lXext -lXi -lX11 -lm \
+-	-lInventor -lGLU -lGL
++	-L../lib -lInventor -lGLU -lGL
+ 
+ LLDLIBS += $(shell [ -e $(X11LIBDIR)/libXp.so ] && echo -lXp)
+ 
+--- inventor/doc/man/ivman/GNUmakefile.orig	Mon Sep 18 11:11:13 2000
++++ inventor/doc/man/ivman/GNUmakefile	Fri May 25 22:31:04 2001
+@@ -5,7 +5,7 @@
+ 
+ CXXFILES = Main.c++ ClassDef.c++ Man.c++ Reader.c++ Writer.c++ BuildIssues.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all install: $(PROGRAM)
+ 
+--- inventor/apps/samples/widgets/GNUmakefile.componentTest.orig	Sun Oct 29 16:04:16 2000
++++ inventor/apps/samples/widgets/GNUmakefile.componentTest	Sat May 26 03:55:48 2001
+@@ -5,7 +5,7 @@
+ 
+ CXXFILES = componentTest.c++
+ 
+-LLDLIBS = libInventorWidget.a -lInventor -lInventorXt -lGLw
++LLDLIBS = libInventorWidget.a -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGLw
+ 
+ all install: all_ivbin
+ 
+--- inventor/apps/tools/ivcat/GNUmakefile.orig	Mon Sep 18 11:41:03 2000
++++ inventor/apps/tools/ivcat/GNUmakefile	Mon May 28 14:39:57 2001
+@@ -5,7 +5,7 @@
+ 
+ CXXFILES = ivcat.c++
+ 
+-LLDLIBS = -lInventor
++LLDLIBS = -L../../../lib -lInventor
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/tools/ivfix/GNUmakefile.orig	Mon May 28 14:40:38 2001
++++ inventor/apps/tools/ivfix/GNUmakefile	Mon May 28 14:40:14 2001
+@@ -22,7 +22,7 @@
+ 	IfTypes.c++	\
+ 	IfWeeder.c++
+ 
+-LLDLIBS = -lInventor
++LLDLIBS = -L../../../lib -lInventor
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/tools/ivinfo/GNUmakefile.orig	Mon Sep 18 11:41:03 2000
++++ inventor/apps/tools/ivinfo/GNUmakefile	Mon May 28 14:40:54 2001
+@@ -5,7 +5,7 @@
+ 
+ CXXFILES = ivinfo.c++
+ 	
+-LLDLIBS = -lInventor
++LLDLIBS = -L../../../lib -lInventor
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/tools/ivview/GNUmakefile.orig	Tue Nov 14 03:49:52 2000
++++ inventor/apps/tools/ivview/GNUmakefile	Mon May 28 14:41:47 2001
+@@ -7,7 +7,7 @@
+ 
+ LLDOPTS += -L../../samples/widgets
+ 
+-LLDLIBS = -lInventorWidget -lInventorXt -lInventor
++LLDLIBS = -lInventorWidget -L../../../libSoXt -lInventorXt -L../../../lib -lInventor
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/converters/ivdowngrade/GNUmakefile.orig	Mon Sep 18 11:40:59 2000
++++ inventor/apps/converters/ivdowngrade/GNUmakefile	Mon May 28 14:44:18 2001
+@@ -22,7 +22,7 @@
+ 	SoText2V2.c++ \
+ 	SoText3V2.c++
+ 
+-LLDLIBS = -lInventor
++LLDLIBS = -L../../../lib -lInventor
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/nodes/BarChart/GNUmakefile.orig	Mon Sep 18 11:41:01 2000
++++ inventor/apps/nodes/BarChart/GNUmakefile	Mon May 28 14:45:17 2001
+@@ -5,7 +5,7 @@
+ 
+ CXXFILES = BarChart.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all install: all_ivbin
+ 
+--- inventor/apps/nodes/Decal/GNUmakefile.orig	Mon Sep 18 11:41:01 2000
++++ inventor/apps/nodes/Decal/GNUmakefile	Mon May 28 14:45:40 2001
+@@ -5,7 +5,7 @@
+ 
+ CXXFILES = Decal.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all install: all_ivbin
+ 
+--- inventor/apps/nodes/GeneralizedCylinder/GNUmakefile.orig	Mon Sep 18 11:41:01 2000
++++ inventor/apps/nodes/GeneralizedCylinder/GNUmakefile	Mon May 28 14:45:59 2001
+@@ -7,7 +7,7 @@
+ 	GeneralizedCylinder.c++ Triangulator.c++ \
+ 	NurbMaker.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all install: all_ivbin
+ 
+--- inventor/apps/demos/SceneViewer/GNUmakefile.orig	Mon Sep 18 11:40:59 2000
++++ inventor/apps/demos/SceneViewer/GNUmakefile	Mon May 28 14:48:07 2001
+@@ -8,7 +8,7 @@
+ 
+ LLDOPTS += -L../../samples/widgets
+ 
+-LLDLIBS = -lInventorWidget -lInventor -lInventorXt
++LLDLIBS = -lInventorWidget -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/demos/drop/GNUmakefile.orig	Mon Sep 18 11:40:59 2000
++++ inventor/apps/demos/drop/GNUmakefile	Mon May 28 14:48:31 2001
+@@ -8,7 +8,7 @@
+ 	TsBlock.c++ TsPiece.c++ TsPieces.c++ TsField.c++ \
+ 	TsTrickle.c++ TsEvents.c++ TsRemoval.c++ TsViewer.c++ drop.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/demos/gview/GNUmakefile.orig	Sun Oct 29 16:04:15 2000
++++ inventor/apps/demos/gview/GNUmakefile	Mon May 28 14:49:04 2001
+@@ -8,7 +8,7 @@
+ 	gview.c++ DisplayGraph.c++ Error.c++ FieldEditor.c++ \
+ 	GraphIcon.c++ GraphViewer.c++ NodeCreator.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/demos/maze/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
++++ inventor/apps/demos/maze/GNUmakefile	Mon May 28 14:49:22 2001
+@@ -8,7 +8,7 @@
+ 
+ CXXFILES = maze.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/demos/noodle/GNUmakefile.orig	Tue Nov 14 03:49:52 2000
++++ inventor/apps/demos/noodle/GNUmakefile	Mon May 28 14:49:58 2001
+@@ -16,7 +16,7 @@
+ 	../../nodes/GeneralizedCylinder/NurbMaker.o \
+ 	../../nodes/GeneralizedCylinder/Triangulator.o \
+ 	../../nodes/GeneralizedCylinder/GeneralizedCylinder.o \
+-	-lInventor -lInventorXt
++	-L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/demos/qmorf/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
++++ inventor/apps/demos/qmorf/GNUmakefile	Mon May 28 14:50:42 2001
+@@ -6,7 +6,7 @@
+ 
+ CXXFILES = QuadThing.c++ Background.c++ FlashBackground.c++
+ 
+-LLDLIBS = -lInventor -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/demos/revo/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
++++ inventor/apps/demos/revo/GNUmakefile	Mon May 28 14:51:04 2001
+@@ -10,7 +10,7 @@
+ 
+ LLDOPTS += -L../../samples/common
+ 
+-LLDLIBS = -lcommon -lInventor -lInventorXt
++LLDLIBS = -lcommon -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
+--- inventor/apps/demos/textomatic/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
++++ inventor/apps/demos/textomatic/GNUmakefile	Mon May 28 14:51:23 2001
+@@ -8,7 +8,7 @@
+ 
+ LLDOPTS += -L../../samples/common
+ 
+-LLDLIBS = -lcommon -lInventor -lInventorXt
++LLDLIBS = -lcommon -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+ 
+ all: all_ivbin
+ 
