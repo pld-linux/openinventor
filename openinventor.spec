@@ -3,7 +3,7 @@ Summary(pl):	Open Inventor - toolkit 3D
 Name:		openinventor
 Version:	2.1.5
 %define	subver	7
-Release:	%{subver}.4
+Release:	%{subver}.5
 License:	LGPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://oss.sgi.com/projects/inventor/download/inventor-%{version}-%{subver}.src.tar.gz
