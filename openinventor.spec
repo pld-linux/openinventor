@@ -3,7 +3,7 @@ Summary(pl):	Open Inventor - toolkit 3D
 Name:		openinventor
 Version:	2.1.5
 %define	subver	7
-Release:	%{subver}.3
+Release:	%{subver}.4
 License:	LGPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://oss.sgi.com/projects/inventor/download/inventor-%{version}-%{subver}.src.tar.gz
@@ -58,7 +58,7 @@ wysokiego, zwi±zanego z aplikacj± (np. edytor materia³ów).
 Summary:	Open Inventor for programmers
 Summary(pl):	Open Inventor dla programistów
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Obsoletes:	sgi-OpenInventor-devel
 
 %description devel
@@ -73,7 +73,7 @@ nag³ówkowe, dokumentacjê API i przyk³ady.
 Summary:	Open Inventor static libraries
 Summary(pl):	Biblioteki statyczne Open Inventora
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Open Inventor static libraries.
@@ -85,7 +85,7 @@ Biblioteki statyczne Open Inventora.
 Summary:	Open Inventor demos
 Summary(pl):	Programy demonstracyjne Open Inventora
 Group:		X11/Applications/Graphics
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description demos
 Demonstration programs for Open Inventor.
@@ -111,7 +111,9 @@ rm -f libFL/src/libFL.a
 FREETYPE=1; export FREETYPE
 
 LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"; export LD_LIBRARY_PATH
-%{__make} OPTIMIZER="%{rpmcflags} %{!?debug:-DNDEBUG}" YACC="bison -y"
+%{__make} \
+	OPTIMIZER="%{rpmcflags} %{!?debug:-DNDEBUG}" \
+	YACC="bison -y"
 
 %install
 rm -rf $RPM_BUILD_ROOT
