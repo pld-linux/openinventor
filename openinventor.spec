@@ -3,7 +3,7 @@ Summary(pl):	Open Inventor - toolkit 3D
 Name:		openinventor
 Version:	2.1.5
 %define	subver	7
-Release:	%{subver}.2
+Release:	%{subver}.3
 License:	LGPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://oss.sgi.com/projects/inventor/download/inventor-%{version}-%{subver}.src.tar.gz
@@ -15,6 +15,7 @@ Patch4:		%{name}-paths.patch
 Patch5:		%{name}-nobash.patch
 Patch6:		%{name}-gcc3.patch
 Patch7:		%{name}-dprintf.patch
+Patch8:		%{name}-morearchs.patch
 URL:		http://oss.sgi.com/projects/inventor/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel => 3.3.6
@@ -103,8 +104,13 @@ Programy demonstruj±ce mo¿liwo¶ci Open Inventora.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
+# use freetype-based libFL instead of precompiled x86 binary libFL.a
+rm -f libFL/src/libFL.a
+FREETYPE=1; export FREETYPE
+
 LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"; export LD_LIBRARY_PATH
 %{__make} OPTIMIZER="%{rpmcflags} %{!?debug:-DNDEBUG}" YACC="bison -y"
 
@@ -122,6 +128,9 @@ install apps/demos/*/*.about $RPM_BUILD_ROOT%{_datadir}/Inventor/help
 cp -rf apps/examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 mv -f $RPM_BUILD_ROOT%{_mandir}/man{1/inventor.1,7/inventor.7}
+
+# resolve conflict with gview
+mv -f $RPM_BUILD_ROOT%{_bindir}/{gview,invgview}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -165,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 %files demos
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/drop
-%attr(755,root,root) %{_bindir}/gview
+%attr(755,root,root) %{_bindir}/invgview
 %attr(755,root,root) %{_bindir}/maze
 %attr(755,root,root) %{_bindir}/noodle
 %attr(755,root,root) %{_bindir}/qmorf
