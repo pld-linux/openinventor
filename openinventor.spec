@@ -119,6 +119,7 @@ LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"; export LD_LIBRARY_PATH
 %{__make} \
 	OPTIMIZER="%{rpmcflags} %{!?debug:-DNDEBUG}" \
 	X11LIBDIR=/usr/X11R6/%{_lib} \
+	IVLIBDIR="\$(IVROOT)%{_libdir}" \
 	YACC="bison -y"
 
 %install
@@ -127,7 +128,8 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/InventorDSO,%{_mandir}/man7} \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
-	IVROOT=$RPM_BUILD_ROOT
+	IVROOT=$RPM_BUILD_ROOT \
+	IVLIBDIR="\$(IVROOT)%{_libdir}"
 
 install lib/lib*.a libSoXt/lib*.a $RPM_BUILD_ROOT%{_libdir}
 install apps/nodes/*/*.so $RPM_BUILD_ROOT%{_libdir}/InventorDSO
