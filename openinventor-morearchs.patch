@@ -1,6 +1,6 @@
 --- inventor/lib/database/include/machine.h.orig	Wed Oct 25 23:47:47 2000
 +++ inventor/lib/database/include/machine.h	Tue Oct 29 12:58:33 2002
-@@ -150,6 +150,38 @@
+@@ -150,6 +150,49 @@
  
  #endif /* __i386__ */
  
@@ -36,15 +36,46 @@
 +#define MACHINE_FLOAT_FORMAT DGL_BIG_IEEE
 +
 +#endif
++
++/*
++ * Linux AMD64 machine dependent setup
++ */
++
++#ifdef __x86_64__
++
++#define MACHINE_WORD_FORMAT DGL_LITTLE_ENDIAN
++#define MACHINE_FLOAT_FORMAT DGL_NON_IEEE
++
++#endif
  
  /*
   * IBM RS/6000 series machine dependent setup
-@@ -309,7 +341,7 @@
+@@ -309,7 +352,7 @@
   */
  
  #if MACHINE_FLOAT_FORMAT == DGL_NON_IEEE
 -#ifdef __i386__
-+#if defined(__i386__) || defined(__alpha__)
++#if defined(__i386__) || defined(__alpha__) || defined(__x86_64__)
  void mem_hton_float(float *t, float *f);
  void mem_ntoh_float(float *t, float *f);
  void mem_hton_double(double *t, double *f);
+--- inventor/lib/database/src/so/SoType.c++.orig	Wed Mar 17 12:41:24 2004
++++ inventor/lib/database/src/so/SoType.c++	Wed Mar 17 13:10:58 2004
+@@ -224,9 +224,17 @@
+ #endif
+ #else // __sgi
+ #ifdef DEBUG
++#if defined(__x86_64__)
++	char *longestName = "/usr/lib64/InventorDSO/.so";
++#else
+ 	char *longestName = "/usr/lib/InventorDSO/.so";
++#endif
+ #endif // DEBUG
++#if defined(__x86_64__)
++	const char *libDir = "lib64";
++#else
+ 	const char *libDir = "lib";
++#endif
+ 	const char *abiName = "";
+ 	//
+ 	// XXX Alex -- add additional layer of abstraction on top
