@@ -1,0 +1,12 @@
+--- inventor/libFL/ang/flfreetype.h.orig	Sat Mar 24 03:34:24 2001
++++ inventor/libFL/ang/flfreetype.h	Wed Mar 17 12:00:26 2004
+@@ -1,7 +1,8 @@
+ #ifndef __flfreetype_h_
+ #define __flfreetype_h_
+ 
+-#include <freetype/freetype.h>
++#include <ft2build.h>
++#include FT_FREETYPE_H
+ 
+ #ifndef __fl_h_
+ #include "fl.h"
