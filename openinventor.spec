@@ -6,9 +6,6 @@ Version:	2.1.5
 Release:	%{subver}.1
 License:	LGPL
 Group:		X11/Applications/Graphics
-Group(de):	X11/Applikationen/Grafik
-Group(pl):	X11/Aplikacje/Grafika
-Group(pt):	X11/Aplicações/Gráficos
 Source0:	ftp://oss.sgi.com/projects/inventor/download/inventor-%{version}-%{subver}.src.tar.gz
 Patch0:		%{name}-glibc.patch
 Patch1:		%{name}-link.patch
@@ -59,13 +56,6 @@ wysokiego, zwi±zanego z aplikacj± (np. edytor materia³ów).
 Summary:	Open Inventor for programmers
 Summary(pl):	Open Inventor dla programistów
 Group:		X11/Development/Libraries
-Group(de):	X11/Entwicklung/Libraries
-Group(es):	X11/Desarrollo/Bibliotecas
-Group(fr):	X11/Development/Librairies
-Group(pl):	X11/Programowanie/Biblioteki
-Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
-Group(ru):	X11/òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	X11/òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 Obsoletes:	sgi-OpenInventor-devel
 
@@ -81,13 +71,6 @@ nag³ówkowe, dokumentacjê API i przyk³ady.
 Summary:	Open Inventor static libraries
 Summary(pl):	Biblioteki statyczne Open Inventora
 Group:		X11/Development/Libraries
-Group(de):	X11/Entwicklung/Libraries
-Group(es):	X11/Desarrollo/Bibliotecas
-Group(fr):	X11/Development/Librairies
-Group(pl):	X11/Programowanie/Biblioteki
-Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
-Group(ru):	X11/òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	X11/òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -100,9 +83,6 @@ Biblioteki statyczne Open Inventora.
 Summary:	Open Inventor demos
 Summary(pl):	Programy demonstracyjne Open Inventora
 Group:		X11/Applications/Graphics
-Group(de):	X11/Applikationen/Grafik
-Group(pl):	X11/Aplikacje/Grafika
-Group(pt):	X11/Aplicações/Gráficos
 Requires:	%{name} = %{version}
 
 %description demos
