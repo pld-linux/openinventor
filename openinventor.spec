@@ -7,6 +7,7 @@ Release:	%{subver}.3
 License:	LGPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://oss.sgi.com/projects/inventor/download/inventor-%{version}-%{subver}.src.tar.gz
+# Source0-md5:	7932d15f142c99a6c5695c0b4a9a8dac
 Patch0:		%{name}-glibc.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-install.patch
