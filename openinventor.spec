@@ -12,6 +12,7 @@ Patch1:		%{name}-link.patch
 Patch2:		%{name}-install.patch
 Patch3:		%{name}-nodisplay.patch
 Patch4:		%{name}-paths.patch
+Patch5:		%{name}-nobash.patch
 URL:		http://oss.sgi.com/projects/inventor
 BuildRequires:	XFree86-devel => 3.3.6
 BuildRequires:	OpenGL-devel
@@ -97,6 +98,7 @@ Programy demonstruj±ce mo¿liwo¶ci Open Inventora.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"; export LD_LIBRARY_PATH
@@ -131,6 +133,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc KNOWN.BUGS.gz
 %attr(755,root,root) %{_libdir}/lib*.so
+%dir %{_libdir}/InventorDSO
+%attr(755,root,root) %{_libdir}/InventorDSO/*.so
 %attr(755,root,root) %{_bindir}/iv2toiv1
 %attr(755,root,root) %{_bindir}/ivcat
 %attr(755,root,root) %{_bindir}/ivdowngrade

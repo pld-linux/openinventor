@@ -1,0 +1,72 @@
+diff -Nur inventor.orig/apps/demos/SceneViewer/SoSceneViewer.c++ inventor/apps/demos/SceneViewer/SoSceneViewer.c++
+--- inventor.orig/apps/demos/SceneViewer/SoSceneViewer.c++	Tue May 29 14:47:23 2001
++++ inventor/apps/demos/SceneViewer/SoSceneViewer.c++	Tue May 29 14:56:55 2001
+@@ -4747,7 +4747,7 @@
+     }
+ 
+     char command[100];
+-    sprintf(command, "which acroread >& /dev/null");
++    sprintf(command, "which acroread >/dev/null 2>&1");
+ 
+     int err = system(command);
+     if (err)
+diff -Nur inventor.orig/apps/demos/noodle/Interface.c++ inventor/apps/demos/noodle/Interface.c++
+--- inventor.orig/apps/demos/noodle/Interface.c++	Tue May 29 14:47:23 2001
++++ inventor/apps/demos/noodle/Interface.c++	Tue May 29 14:56:22 2001
+@@ -406,7 +406,7 @@
+     }
+ 
+     char command[100];
+-    sprintf(command, "which acroread >& /dev/null");
++    sprintf(command, "which acroread >/dev/null 2>&1");
+ 
+     int err = system(command);
+     if (err) {
+diff -Nur inventor.orig/apps/demos/qmorf/qmorf.c++ inventor/apps/demos/qmorf/qmorf.c++
+--- inventor.orig/apps/demos/qmorf/qmorf.c++	Tue May 29 14:47:23 2001
++++ inventor/apps/demos/qmorf/qmorf.c++	Tue May 29 14:56:02 2001
+@@ -444,7 +444,7 @@
+ 	return;
+     }
+     char command[100];
+-    sprintf(command, "which acroread >& /dev/null");
++    sprintf(command, "which acroread >/dev/null 2>&1");
+ 
+     int err = system(command);
+     if (err)
+diff -Nur inventor.orig/apps/demos/revo/revo.c++ inventor/apps/demos/revo/revo.c++
+--- inventor.orig/apps/demos/revo/revo.c++	Tue May 29 14:47:23 2001
++++ inventor/apps/demos/revo/revo.c++	Tue May 29 14:55:45 2001
+@@ -87,7 +87,7 @@
+     }
+ 
+     char command[100];
+-    sprintf(command, "which acroread >& /dev/null");
++    sprintf(command, "which acroread >/dev/null 2>&1");
+ 
+     int err = system(command);
+     if (err)
+diff -Nur inventor.orig/apps/demos/textomatic/textomatic.c++ inventor/apps/demos/textomatic/textomatic.c++
+--- inventor.orig/apps/demos/textomatic/textomatic.c++	Tue May 29 14:47:23 2001
++++ inventor/apps/demos/textomatic/textomatic.c++	Tue May 29 14:55:28 2001
+@@ -165,7 +165,7 @@
+     }
+ 
+     char command[100];
+-    sprintf(command, "which acroread >& /dev/null");
++    sprintf(command, "which acroread >/dev/null 2>&1");
+ 
+     int err = system(command);
+     if (err) {
+diff -Nur inventor.orig/apps/tools/ivview/ivview.c++ inventor/apps/tools/ivview/ivview.c++
+--- inventor.orig/apps/tools/ivview/ivview.c++	Tue May 29 14:47:23 2001
++++ inventor/apps/tools/ivview/ivview.c++	Tue May 29 14:55:04 2001
+@@ -721,7 +721,7 @@
+     }
+ 
+     char command[100];
+-    sprintf(command, "which acroread >& /dev/null");
++    sprintf(command, "which acroread >/dev/null 2>&1");
+ 
+     int err = system(command);
+     if (err) {
