@@ -1,0 +1,11 @@
+--- inventor/lib/database/src/so/engines/SoCalcParse.y.orig	Tue Aug 15 14:56:18 2000
++++ inventor/lib/database/src/so/engines/SoCalcParse.y	Wed Mar 17 12:11:09 2004
+@@ -110,7 +110,7 @@
+ %type <expr> asgn primary_expression postfix_expression
+ %type <expr> unary_expression
+ %type <expr> multiplicative_expression additive_expression
+-%type <expr> additive_expression relational_expression
++%type <expr> relational_expression
+ %type <expr> equality_expression logical_AND_expression
+ %type <expr> logical_OR_expression conditional_expression
+ %type <list> args
