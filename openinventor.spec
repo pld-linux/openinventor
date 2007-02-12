@@ -1,5 +1,5 @@
 Summary:	Open Inventor 3D toolkit
-Summary(pl):	Open Inventor - toolkit 3D
+Summary(pl.UTF-8):   Open Inventor - toolkit 3D
 Name:		openinventor
 Version:	2.1.5
 %define	subver	7
@@ -49,16 +49,16 @@ of fundamental application tasks such as rendering, picking, event
 handling, and file reading/writing are built-in operations of all
 objects in the database and thus are simple to invoke.
 
-%description -l pl
-Open Inventor jest zorientowanym obiektowo toolkitem 3D, który
-upraszcza zadanie programowania grafiki do zestawu ³atwych do u¿ycia
-obiektów. Mo¿na u¿ywaæ obiektów pocz±wszy od niskiego poziomu,
-zwi±zanego z danymi (np. kula, kamera, materia³, ¶wiat³o) do
-wysokiego, zwi±zanego z aplikacj± (np. edytor materia³ów).
+%description -l pl.UTF-8
+Open Inventor jest zorientowanym obiektowo toolkitem 3D, ktÃ³ry
+upraszcza zadanie programowania grafiki do zestawu Å‚atwych do uÅ¼ycia
+obiektÃ³w. MoÅ¼na uÅ¼ywaÄ‡ obiektÃ³w poczÄ…wszy od niskiego poziomu,
+zwiÄ…zanego z danymi (np. kula, kamera, materiaÅ‚, Å›wiatÅ‚o) do
+wysokiego, zwiÄ…zanego z aplikacjÄ… (np. edytor materiaÅ‚Ã³w).
 
 %package devel
 Summary:	Open Inventor for programmers
-Summary(pl):	Open Inventor dla programistów
+Summary(pl.UTF-8):   Open Inventor dla programistÃ³w
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	sgi-OpenInventor-devel
@@ -67,33 +67,33 @@ Obsoletes:	sgi-OpenInventor-devel
 Package for programmers using Open Inventor. Contains header files,
 API documentation and examples.
 
-%description devel -l pl
-Pakiet dla programistów korzystaj±cych z Open Inventora. Zawiera pliki
-nag³ówkowe, dokumentacjê API i przyk³ady.
+%description devel -l pl.UTF-8
+Pakiet dla programistÃ³w korzystajÄ…cych z Open Inventora. Zawiera pliki
+nagÅ‚Ã³wkowe, dokumentacjÄ™ API i przykÅ‚ady.
 
 %package static
 Summary:	Open Inventor static libraries
-Summary(pl):	Biblioteki statyczne Open Inventora
+Summary(pl.UTF-8):   Biblioteki statyczne Open Inventora
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Open Inventor static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne Open Inventora.
 
 %package demos
 Summary:	Open Inventor demos
-Summary(pl):	Programy demonstracyjne Open Inventora
+Summary(pl.UTF-8):   Programy demonstracyjne Open Inventora
 Group:		X11/Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 
 %description demos
 Demonstration programs for Open Inventor.
 
-%description demos -l pl
-Programy demonstruj±ce mo¿liwo¶ci Open Inventora.
+%description demos -l pl.UTF-8
+Programy demonstrujÄ…ce moÅ¼liwoÅ›ci Open Inventora.
 
 %prep
 %setup -q -n inventor
