@@ -1,5 +1,5 @@
 Summary:	Open Inventor 3D toolkit
-Summary(pl.UTF-8):   Open Inventor - toolkit 3D
+Summary(pl.UTF-8):	Open Inventor - toolkit 3D
 Name:		openinventor
 Version:	2.1.5
 %define	subver	7
@@ -58,7 +58,7 @@ wysokiego, związanego z aplikacją (np. edytor materiałów).
 
 %package devel
 Summary:	Open Inventor for programmers
-Summary(pl.UTF-8):   Open Inventor dla programistów
+Summary(pl.UTF-8):	Open Inventor dla programistów
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	sgi-OpenInventor-devel
@@ -73,7 +73,7 @@ nagłówkowe, dokumentację API i przykłady.
 
 %package static
 Summary:	Open Inventor static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne Open Inventora
+Summary(pl.UTF-8):	Biblioteki statyczne Open Inventora
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -85,7 +85,7 @@ Biblioteki statyczne Open Inventora.
 
 %package demos
 Summary:	Open Inventor demos
-Summary(pl.UTF-8):   Programy demonstracyjne Open Inventora
+Summary(pl.UTF-8):	Programy demonstracyjne Open Inventora
 Group:		X11/Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 
