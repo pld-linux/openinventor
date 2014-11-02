@@ -1,34 +1,47 @@
---- inventor/doc/help/GNUmakefile.orig	Tue Nov 14 03:49:52 2000
-+++ inventor/doc/help/GNUmakefile	Mon May 28 20:52:16 2001
-@@ -5,6 +5,6 @@
+--- inventor/doc/help/GNUmakefile.orig	2014-11-02 09:16:19.687857662 +0100
++++ inventor/doc/help/GNUmakefile	2014-11-02 09:33:06.657815405 +0100
+@@ -4,7 +4,7 @@
+ all:
  
  install:
- 	mkdir -p $(IVHELPDIR)/Inventor
--	$(INSTALL) -m 644 *.help $(IVHELPDIR)/Inventor
-+	$(INSTALL) -m 644 *.help $(IVHELPDIR)
+-	mkdir -p $(IVHELPDIR)/Inventor
+-	for h in *.help; do $(INSTALL) -m 644 $$h $(IVHELPDIR)/Inventor; done
++	mkdir -p $(IVHELPDIR)
++	for h in *.help; do $(INSTALL) -m 644 $$h $(IVHELPDIR); done
  
  include $(IVCOMMONRULES)
---- inventor/make/ivcommondefs.orig	Sat Mar 24 03:47:42 2001
-+++ inventor/make/ivcommondefs	Mon May 28 20:59:35 2001
-@@ -121,13 +121,13 @@
+--- inventor/make/ivcommondefs.orig	2014-11-02 09:16:19.687857662 +0100
++++ inventor/make/ivcommondefs	2014-11-02 09:37:19.434471464 +0100
+@@ -192,13 +192,13 @@
  IVDLIBDIR = $(IVLIBDIR)/InventorDebug
- IVHDRTOP = $(IVROOT)/usr/include/Inventor
+ IVHDRTOP = $(IVROOT)/$(IVPREFIX)/include/Inventor
  IVHDRDIR = $(IVHDRTOP)/$(HDRSUBDIR)
--IVMAN1DIR = $(IVROOT)/usr/man/man1
--IVMAN3DIR = $(IVROOT)/usr/man/man3
--IVHELPDIR = $(IVROOT)/usr/share/help
--IVDATADIR = $(IVROOT)/usr/share/data/models
--IVDEMODIR = $(IVROOT)/usr/demos
+-IVMAN1DIR = $(IVROOT)/$(IVPREFIX)/man/man1
+-IVMAN3DIR = $(IVROOT)/$(IVPREFIX)/man/man3
+-IVHELPDIR = $(IVROOT)/$(IVPREFIX)/share/help
+-IVDATADIR = $(IVROOT)/$(IVPREFIX)/share/data/models
+-IVDEMODIR = $(IVROOT)/$(IVPREFIX)/demos
 -IVDEMOBINDIR = $(IVDEMODIR)/Inventor
 -IVDEMODATADIR = $(IVDEMODIR)/data/Inventor
-+IVMAN1DIR = $(IVROOT)/usr/share/man/man1
-+IVMAN3DIR = $(IVROOT)/usr/share/man/man3
-+IVHELPDIR = $(IVROOT)/usr/share/Inventor/help
-+IVDATADIR = $(IVROOT)/usr/share/Inventor/data/models
-+IVDEMODIR = $(IVROOT)/usr/share/Inventor/demos
-+IVDEMOBINDIR = $(IVROOT)/usr/bin
-+IVDEMODATADIR = $(IVROOT)/usr/share/Inventor/data/demos
++IVMAN1DIR = $(IVROOT)/$(IVPREFIX)/share/man/man1
++IVMAN3DIR = $(IVROOT)/$(IVPREFIX)/share/man/man3
++IVHELPDIR = $(IVROOT)/$(IVPREFIX)/share/Inventor/help
++IVDATADIR = $(IVROOT)/$(IVPREFIX)/share/Inventor/data/models
++IVDEMODIR = $(IVROOT)/$(IVPREFIX)/share/Inventor/demos
++IVDEMOBINDIR = $(IVBINDIR)
++IVDEMODATADIR = $(IVDEMODIR)/data
  
+ 
+ 
+--- inventor/make/ivcommonrules.orig	2003-07-12 00:40:54.000000000 +0200
++++ inventor/make/ivcommonrules	2014-11-02 15:50:32.616865176 +0100
+@@ -119,7 +119,7 @@
+ 	  fi; \
+ 	fi
+ 	if [ -e $(DEMO).about ]; then \
+-	  $(INSTALL) -m 644 $(DEMO).about $(IVDEMOBINDIR); \
++	  $(INSTALL) -m 644 $(DEMO).about $(IVHELPDIR); \
+ 	fi
  
  
 --- inventor/lib/database/src/so/SoType.c++.orig	Sat Oct 14 12:46:07 2000
@@ -45,25 +58,25 @@
  	    sprintf(DSOFile,"/usr/%s/InventorDSO/%s.so", libDir, nameChars);
  	    dsoHandle = sgidlopen_version(DSOFile, RTLD_LAZY, "sgi3.0", 0);
  	}	    
---- inventor/libSoXt/include/Inventor/Xt/SoXtComponent.h.orig	Tue Aug 15 14:56:27 2000
-+++ inventor/libSoXt/include/Inventor/Xt/SoXtComponent.h	Mon May 28 22:01:56 2001
+--- inventor/libSoXt/include/Inventor/Xt/SoXtComponent.h.orig	2014-11-02 09:16:19.694524329 +0100
++++ inventor/libSoXt/include/Inventor/Xt/SoXtComponent.h	2014-11-02 09:38:44.417801230 +0100
 @@ -268,7 +268,7 @@
      // name. By default the file will be searched using:
      //	    1) current working directory
      //	    2) SO_HELP_DIR environment variable
--    //	    3) /usr/share/help/Inventor
-+    //	    3) /usr/share/Inventor/help
+-    //	    3) $(IVPREFIX)/share/help/Inventor
++    //	    3) $(IVPREFIX)/share/Inventor/help
      //	    4) else bring a no help card found dialog
      //
      void    openHelpCard(const char *cardName);
---- inventor/libSoXt/src/SoXtComponent.c++.orig	Tue Nov 14 03:49:53 2000
-+++ inventor/libSoXt/src/SoXtComponent.c++	Mon May 28 22:06:34 2001
+--- inventor/libSoXt/src/SoXtComponent.c++.orig	2014-11-02 09:16:19.694524329 +0100
++++ inventor/libSoXt/src/SoXtComponent.c++	2014-11-02 09:39:34.901132444 +0100
 @@ -561,7 +561,7 @@
  //  card given the file name. By default the file will be searched using:
  //	    1) current working directory
  //	    2) SO_HELP_DIR environment variable
--//	    3) /usr/share/help/Inventor
-+//	    3) /usr/share/Inventor/help
+-//	    3) $(IVPREFIX)/share/help/Inventor
++//	    3) $(IVPREFIX)/share/Inventor/help
  //	    4) else bring a "No help card found message"
  //
  // Use: protected
@@ -71,41 +84,41 @@
      }
      
      // else check for the default location
--    strcpy(cardPath, "/usr/share/help/Inventor/");
-+    strcpy(cardPath, "/usr/share/Inventor/help");
+-    strcpy(cardPath, IVPREFIX "/share/help/Inventor/");
++    strcpy(cardPath, IVPREFIX "/share/Inventor/help/");
      strcat(cardPath, cardName);
      if ( access(cardPath, R_OK) == 0 ) {
  	strcat(pgrCmd, cardPath);
---- inventor/libSoXt/src/mtlEdit/SoXtMtlEdit.c++.orig	Tue Aug 15 14:56:28 2000
-+++ inventor/libSoXt/src/mtlEdit/SoXtMtlEdit.c++	Mon May 28 22:33:51 2001
-@@ -162,7 +162,7 @@
+--- inventor/libSoXt/src/mtlEdit/SoXtMtlEdit.c++.orig	2014-11-02 09:16:19.701190998 +0100
++++ inventor/libSoXt/src/mtlEdit/SoXtMtlEdit.c++	2014-11-02 09:40:19.134463921 +0100
+@@ -156,7 +156,7 @@
  	"Material Emissive Color"
  };
  
--static char *mtlDir  = "/usr/share/data/materials";
-+static char *mtlDir  = "/usr/share/Inventor/data/materials";
+-static char *mtlDir  = IVPREFIX "/share/data/materials";
++static char *mtlDir  = IVPREFIX "/share/Inventor/data/materials";
  
  static char *slider_labels[] = { (char *)NULL, (char *)NULL, (char *)NULL,
  				 (char *)NULL, (char *)NULL, (char *)NULL
---- inventor/libSoXt/src/mtlEdit/SoXtMtlList.c++.orig	Sat Oct 14 12:46:09 2000
-+++ inventor/libSoXt/src/mtlEdit/SoXtMtlList.c++	Mon May 28 22:34:08 2001
+--- inventor/libSoXt/src/mtlEdit/SoXtMtlList.c++.orig	2014-11-02 09:16:20.341190969 +0100
++++ inventor/libSoXt/src/mtlEdit/SoXtMtlList.c++	2014-11-02 09:40:35.281129910 +0100
 @@ -264,7 +264,7 @@
      setClassName("SoXtMaterialList");
      if (dir != NULL)
  	materialDir = strdup(dir);
--    else materialDir = strdup("/usr/share/data/materials");
-+    else materialDir = strdup("/usr/share/Inventor/data/materials");
+-    else materialDir = strdup(IVPREFIX "/share/data/materials");
++    else materialDir = strdup(IVPREFIX "/share/Inventor/data/materials");
  
      callbackList = new SoCallbackList;
      curPalette = -1;
---- inventor/libFL/ang/fl.c.orig	Sat Mar 24 03:34:24 2001
-+++ inventor/libFL/ang/fl.c	Mon May 28 22:51:55 2001
+--- inventor/libFL/ang/fl.c.orig	2014-11-02 09:16:20.341190969 +0100
++++ inventor/libFL/ang/fl.c	2014-11-02 09:42:05.567792788 +0100
 @@ -95,7 +95,7 @@
    NULL
  };
  
--static char *fontPath = "/usr/share/data/fonts";
-+static char *fontPath = "/usr/share/Inventor/fonts";
+-static char *fontPath = IVPREFIX "/share/data/fonts";
++static char *fontPath = IVPREFIX "/share/Inventor/data/fonts";
  int fl_debug = FALSE;
  
  /*
@@ -120,26 +133,26 @@
  }
  
  METHOD addCB addCallback(
---- inventor/apps/tools/ivview/ivview.c++.orig	Sat Dec  9 04:17:04 2000
-+++ inventor/apps/tools/ivview/ivview.c++	Mon May 28 23:42:34 2001
-@@ -714,9 +714,9 @@
+--- inventor/apps/tools/ivview/ivview.c++.orig	2014-11-02 09:16:20.347857632 +0100
++++ inventor/apps/tools/ivview/ivview.c++	2014-11-02 09:42:49.531124277 +0100
+@@ -715,9 +715,9 @@
  static void
  showAboutDialog()
  {
--   if (access("/usr/share/help/ivview/ivview.about", R_OK) != 0) {
-+   if (access("/usr/share/Inventor/help/ivview.about", R_OK) != 0) {
+-   if (access(IVPREFIX "/share/help/ivview/ivview.about", R_OK) != 0) {
++   if (access(IVPREFIX "/share/Inventor/help/ivview/ivview.about", R_OK) != 0) {
          system("xmessage 'Sorry, could not find "
--               "/usr/share/help/ivview/ivview.about' > /dev/null");
-+               "/usr/share/Inventor/help/ivview.about' > /dev/null");
+-               IVPREFIX "/share/help/ivview/ivview.about' > /dev/null");
++               IVPREFIX "/share/Inventor/help/ivview/ivview.about' > /dev/null");
          return;
      }
  
-@@ -730,7 +730,7 @@
+@@ -731,7 +731,7 @@
          return;
      }
  
--    sprintf(command, "acroread /usr/share/help/ivview/ivview.about &");
-+    sprintf(command, "acroread /usr/share/Inventor/help/ivview.about &");
+-    sprintf(command, "acroread " IVPREFIX "/share/help/ivview/ivview.about &");
++    sprintf(command, "acroread " IVPREFIX "/share/Inventor/help/ivview/ivview.about &");
      system(command);
  }
  
@@ -155,52 +168,52 @@
 +	$(INSTALL) -m 644 $(PROGRAM).about $(IVHELPDIR)
  
  include $(IVCOMMONRULES)
---- inventor/apps/demos/SceneViewer/SoSceneViewer.c++.orig	Tue Nov 14 03:49:51 2000
-+++ inventor/apps/demos/SceneViewer/SoSceneViewer.c++	Mon May 28 23:58:47 2001
-@@ -4739,10 +4739,10 @@
+--- inventor/apps/demos/SceneViewer/SoSceneViewer.c++.orig	2014-11-02 09:16:20.357857637 +0100
++++ inventor/apps/demos/SceneViewer/SoSceneViewer.c++	2014-11-02 09:54:20.107761965 +0100
+@@ -4734,10 +4734,10 @@
  //
  ////////////////////////////////////////////////////////////////////////
  {
--    if (access("/usr/demos/Inventor/SceneViewer.about", R_OK) != 0)
-+    if (access("/usr/share/Inventor/help/SceneViewer.about", R_OK) != 0)
+-    if (access(IVPREFIX "/demos/Inventor/SceneViewer.about", R_OK) != 0)
++    if (access(IVPREFIX "/share/Inventor/demos/data/SceneViewer.about", R_OK) != 0)
      {
  	system("xmessage 'Sorry, could not find "
--	       "/usr/demos/Inventor/SceneViewer.about' > /dev/null");
-+	       "/usr/share/Inventor/help/SceneViewer.about' > /dev/null");
+-	       IVPREFIX "/demos/Inventor/SceneViewer.about' > /dev/null");
++	       IVPREFIX "/share/Inventor/demos/data/SceneViewer.about' > /dev/null");
  	return;
      }
  
-@@ -4757,7 +4757,7 @@
- 	return;
+@@ -4753,7 +4753,7 @@
      }
  
--    sprintf(command, "acroread /usr/demos/Inventor/SceneViewer.about &");
-+    sprintf(command, "acroread /usr/share/Inventor/help/SceneViewer.about &");
+     sprintf(command, "acroread "
+-            IVPREFIX "/demos/Inventor/SceneViewer.about &");
++            IVPREFIX "/share/Inventor/demos/data/SceneViewer.about &");
      system(command);
  }
  
---- inventor/apps/demos/gview/DisplayGraph.c++.orig	Sun Oct 29 16:04:15 2000
-+++ inventor/apps/demos/gview/DisplayGraph.c++	Tue May 29 00:06:57 2001
+--- inventor/apps/demos/gview/DisplayGraph.c++.orig	2014-11-02 10:18:30.964367742 +0100
++++ inventor/apps/demos/gview/DisplayGraph.c++	2014-11-02 10:24:00.081020597 +0100
 @@ -67,7 +67,7 @@
  SbDict	*DisplayGraph::iconDict;
  
  #define ICON_FILE	"gviewIcons.iv"
--#define ICON_INST_DIR	"/usr/demos/data/Inventor"
-+#define ICON_INST_DIR	"/usr/share/Inventor/data/demos"
+-#define ICON_INST_DIR	IVPREFIX "/demos/data/Inventor"
++#define ICON_INST_DIR	IVPREFIX "/share/Inventor/demos/data"
  #define ICON_ENV_VAR	"IV_GRAPH_DIR"
  
  ////////////////////////////////////////////////////////////////////////
---- inventor/apps/demos/noodle/Interface.c++.orig	Tue Nov 14 03:49:52 2000
-+++ inventor/apps/demos/noodle/Interface.c++	Tue May 29 00:09:49 2001
+--- inventor/apps/demos/noodle/Interface.c++.orig	2014-11-02 09:16:20.364524304 +0100
++++ inventor/apps/demos/noodle/Interface.c++	2014-11-02 10:05:25.657734032 +0100
 @@ -399,9 +399,9 @@
  void
  Interface::showAboutDialog()
  {
--   if (access("/usr/demos/Inventor/noodle.about", R_OK) != 0) {
-+   if (access("/usr/share/Inventor/help/noodle.about", R_OK) != 0) {
+-   if (access(IVPREFIX "/demos/Inventor/noodle.about", R_OK) != 0) {
++   if (access(IVPREFIX "/share/Inventor/demos/data/noodle.about", R_OK) != 0) {
          system("xmessage 'Sorry, could not find "
--               "/usr/demos/Inventor/noodle.about' > /dev/null");
-+               "/usr/share/Inventor/help/noodle.about' > /dev/null");
+-               IVPREFIX "/demos/Inventor/noodle.about' > /dev/null");
++               IVPREFIX "/share/Inventor/demos/data/noodle.about' > /dev/null");
          return;
      }
  
@@ -208,100 +221,100 @@
          return;
      }
  
--    sprintf(command, "acroread /usr/demos/Inventor/noodle.about &");
-+    sprintf(command, "acroread /usr/share/Inventor/help/noodle.about &");
+-    sprintf(command, "acroread " IVPREFIX "/demos/Inventor/noodle.about &");
++    sprintf(command, "acroread " IVPREFIX "/share/Inventor/demos/data/noodle.about &");
      system(command);
  }
  
---- inventor/apps/demos/qmorf/qmorf.c++.orig	Tue Nov 14 03:49:52 2000
-+++ inventor/apps/demos/qmorf/qmorf.c++	Tue May 29 00:12:43 2001
-@@ -415,7 +415,7 @@
- 	fprintf(stderr, "At least two files must be given, and "
+--- inventor/apps/demos/qmorf/qmorf.c++.orig	2014-11-02 09:16:20.371190968 +0100
++++ inventor/apps/demos/qmorf/qmorf.c++	2014-11-02 10:07:27.381062257 +0100
+@@ -414,7 +414,7 @@
  		"they must contain QuadMeshes (qmorf can\n");
  	fprintf(stderr, "only morph QuadMesh nodes).\n");
--	fprintf(stderr, "The directory /usr/share/data/models/CyberHeads "
-+	fprintf(stderr, "The directory /usr/share/Inventor/data/models/CyberHeads "
+ 	fprintf(stderr, "The directory "
+-		IVPREFIX "/share/data/models/CyberHeads "
++		IVPREFIX "/share/Inventor/data/models/CyberHeads "
  		"contains good data to morph.\n");
  
  	exit(7);
-@@ -437,10 +437,10 @@
+@@ -436,10 +436,10 @@
  void
  showAboutDialog(Widget, XtPointer, XtPointer)
  {
--    if (access("/usr/demos/Inventor/qmorf.about", R_OK) != 0)
-+    if (access("/usr/share/Inventor/help/qmorf.about", R_OK) != 0)
+-    if (access(IVPREFIX "/demos/Inventor/qmorf.about", R_OK) != 0)
++    if (access(IVPREFIX "/share/Inventor/demos/data/qmorf.about", R_OK) != 0)
      {
  	system("xmessage 'Sorry, could not find "
--	       "/usr/demos/Inventor/qmorf.about' > /dev/null");
-+	       "/usr/share/Inventor/help/qmorf.about' > /dev/null");
+-	       IVPREFIX "/demos/Inventor/qmorf.about' > /dev/null");
++	       IVPREFIX "/share/Inventor/demos/data/qmorf.about' > /dev/null");
  	return;
      }
      char command[100];
-@@ -454,7 +454,7 @@
+@@ -453,7 +453,7 @@
  	return;
      }
  
--    sprintf(command, "acroread /usr/demos/Inventor/qmorf.about &");
-+    sprintf(command, "acroread /usr/share/Inventor/help/qmorf.about &");
+-    sprintf(command, "acroread " IVPREFIX "/demos/Inventor/qmorf.about &");
++    sprintf(command, "acroread " IVPREFIX "/share/Inventor/demos/data/qmorf.about &");
      system(command);
  }	
  
---- inventor/apps/demos/revo/revo.c++.orig	Tue Nov 14 03:49:52 2000
-+++ inventor/apps/demos/revo/revo.c++	Tue May 29 00:15:21 2001
-@@ -79,10 +79,10 @@
+--- inventor/apps/demos/revo/revo.c++.orig	2014-11-02 09:16:20.374524299 +0100
++++ inventor/apps/demos/revo/revo.c++	2014-11-02 10:08:17.104393504 +0100
+@@ -78,10 +78,10 @@
  void
  showAboutDialog(Widget, XtPointer, XtPointer)
  {
--    if (access("/usr/demos/Inventor/revo.about", R_OK) != 0)
-+    if (access("/usr/share/Inventor/help/revo.about", R_OK) != 0)
+-    if (access(IVPREFIX "/demos/Inventor/revo.about", R_OK) != 0)
++    if (access(IVPREFIX "/share/Inventor/demos/data/revo.about", R_OK) != 0)
      {
  	system("xmessage 'Sorry, could not find "
--	       "/usr/demos/Inventor/revo.about' > /dev/null");
-+	       "/usr/share/Inventor/help/revo.about' > /dev/null");
+-	       IVPREFIX "/demos/Inventor/revo.about' > /dev/null");
++	       IVPREFIX "/share/Inventor/demos/data/revo.about' > /dev/null");
  	return;
      }
  
-@@ -97,7 +97,7 @@
+@@ -96,7 +96,7 @@
  	return;
      }
  
--    sprintf(command, "acroread /usr/demos/Inventor/revo.about &");
-+    sprintf(command, "acroread /usr/share/Inventor/help/revo.about &");
+-    sprintf(command, "acroread " IVPREFIX "/demos/Inventor/revo.about &");
++    sprintf(command, "acroread " IVPREFIX "/share/Inventor/demos/data/revo.about &");
      system(command);
  }	
  
---- inventor/apps/demos/textomatic/textomatic.c++.orig	Tue Nov 14 03:49:52 2000
-+++ inventor/apps/demos/textomatic/textomatic.c++	Tue May 29 00:16:29 2001
-@@ -157,10 +157,10 @@
+--- inventor/apps/demos/textomatic/textomatic.c++.orig	2014-11-02 09:16:20.374524299 +0100
++++ inventor/apps/demos/textomatic/textomatic.c++	2014-11-02 10:08:52.151058700 +0100
+@@ -160,10 +160,10 @@
  void
  showAboutDialog(Widget, XtPointer, XtPointer)
  {
--    if (access("/usr/demos/Inventor/textomatic.about", R_OK) != 0)
-+    if (access("/usr/share/Inventor/help/textomatic.about", R_OK) != 0)
+-    if (access(IVPREFIX "/demos/Inventor/textomatic.about", R_OK) != 0)
++    if (access(IVPREFIX "/share/Inventor/demos/data/textomatic.about", R_OK) != 0)
      {
  	system("xmessage 'Sorry, could not find "
--	       "/usr/demos/Inventor/textomatic.about' > /dev/null");
-+	       "/usr/share/Inventor/help/textomatic.about' > /dev/null");
+-	       IVPREFIX "/demos/Inventor/textomatic.about' > /dev/null");
++	       IVPREFIX "/share/Inventor/demos/data/textomatic.about' > /dev/null");
  	return;
      }
  
-@@ -174,7 +174,7 @@
+@@ -177,7 +177,7 @@
  	return;
      }
  
--    sprintf(command, "acroread /usr/demos/Inventor/textomatic.about &");
-+    sprintf(command, "acroread /usr/share/Inventor/help/textomatic.about &");
+-    sprintf(command, "acroread " IVPREFIX "/demos/Inventor/textomatic.about &");
++    sprintf(command, "acroread " IVPREFIX "/share/Inventor/demos/data/textomatic.about &");
      system(command);
  }	
  
---- inventor/apps/samples/widgets/MyTextureEd.c++.orig	Sun Oct 29 16:04:17 2000
-+++ inventor/apps/samples/widgets/MyTextureEd.c++	Tue May 29 00:18:25 2001
+--- inventor/apps/samples/widgets/MyTextureEd.c++.orig	2014-11-02 09:16:20.381190965 +0100
++++ inventor/apps/samples/widgets/MyTextureEd.c++	2014-11-02 10:11:13.424386104 +0100
 @@ -228,7 +228,7 @@
  
  
  static char *customTextureDir = ".textures";
--static char *defaultDir = "/usr/share/data/textures";
-+static char *defaultDir = "/usr/share/Inventor/data/textures";
+-static char *defaultDir = IVPREFIX "/share/data/textures";
++static char *defaultDir = IVPREFIX "/share/Inventor/data/textures";
  static char *editorTitle = "Texture Editor";
  static char *noFileNameStr = "<empty>";
  

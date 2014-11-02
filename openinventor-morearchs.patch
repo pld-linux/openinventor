@@ -1,8 +1,16 @@
---- inventor/lib/database/include/machine.h.orig	Wed Oct 25 23:47:47 2000
-+++ inventor/lib/database/include/machine.h	Tue Oct 29 12:58:33 2002
-@@ -150,6 +150,49 @@
+--- inventor/lib/database/include/machine.h.orig	2003-07-12 00:40:53.000000000 +0200
++++ inventor/lib/database/include/machine.h	2014-11-02 11:57:09.977452599 +0100
+@@ -143,13 +143,56 @@
+  * Linux i386/ia64 machine dependent setup
+  */
  
- #endif /* __i386__ */
+-#if __i386__ || __ia64__
++#if __i386__ || __ia64__ || __x86_64__
+ 
+ #define MACHINE_WORD_FORMAT	DGL_LITTLE_ENDIAN
+ #define MACHINE_FLOAT_FORMAT	DGL_NON_IEEE
+ 
+ #endif /* __i386__ || __ia64__ */
  
 +/*
 + * Linux alpha machine dependent setup
@@ -49,13 +57,13 @@
 +#endif
  
  /*
-  * IBM RS/6000 series machine dependent setup
-@@ -309,7 +352,7 @@
+  * Apple Darwin (Mac OS X) machine dependent setup
+@@ -321,7 +364,7 @@
   */
  
  #if MACHINE_FLOAT_FORMAT == DGL_NON_IEEE
--#ifdef __i386__
-+#if defined(__i386__) || defined(__alpha__) || defined(__x86_64__)
+-#if __i386__ || __ia64__
++#if __i386__ || __ia64__ || __x86_64__
  void mem_hton_float(float *t, float *f);
  void mem_ntoh_float(float *t, float *f);
  void mem_hton_double(double *t, double *f);
@@ -65,13 +73,13 @@
  #endif
  #else // __sgi
  #ifdef DEBUG
-+#if defined(__x86_64__)
++#if defined(__x86_64__) || defined(__arch64__) || defined(__s390x__) || defined(__powerpc64__)
 +	char *longestName = "/usr/lib64/InventorDSO/.so";
 +#else
  	char *longestName = "/usr/lib/InventorDSO/.so";
 +#endif
  #endif // DEBUG
-+#if defined(__x86_64__)
++#if defined(__x86_64__) || defined(__arch64__) || defined(__s390x__) || defined(__powerpc64__)
 +	const char *libDir = "lib64";
 +#else
  	const char *libDir = "lib";

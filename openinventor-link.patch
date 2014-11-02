@@ -9,14 +9,14 @@
  
  LLDLIBS += $(shell [ -e $(X11LIBDIR)/libXp.so ] && echo -lXp)
  
---- inventor/doc/man/ivman/GNUmakefile.orig	Mon Sep 18 11:11:13 2000
-+++ inventor/doc/man/ivman/GNUmakefile	Fri May 25 22:31:04 2001
+--- inventor/doc/man/ivman/GNUmakefile.orig	2014-11-02 09:04:07.224555065 +0100
++++ inventor/doc/man/ivman/GNUmakefile	2014-11-02 09:06:34.431215559 +0100
 @@ -5,7 +5,7 @@
  
  CXXFILES = Main.c++ ClassDef.c++ Man.c++ Reader.c++ Writer.c++ BuildIssues.c++
  
--LLDLIBS = -lInventor -lInventorXt
-+LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
+-LLDLIBS = -lInventor
++LLDLIBS = -L../../../lib -lInventor
  
  all install: $(PROGRAM)
  
@@ -65,13 +65,13 @@
  all: all_ivbin
  
 --- inventor/apps/tools/ivview/GNUmakefile.orig	Tue Nov 14 03:49:52 2000
-+++ inventor/apps/tools/ivview/GNUmakefile	Mon May 28 14:41:47 2001
++++ inventor/apps/tools/ivview/GNUmakefile	2014-11-02 13:47:07.040509433 +0100
 @@ -7,7 +7,7 @@
  
  LLDOPTS += -L../../samples/widgets
  
 -LLDLIBS = -lInventorWidget -lInventorXt -lInventor
-+LLDLIBS = -lInventorWidget -L../../../libSoXt -lInventorXt -L../../../lib -lInventor
++LLDLIBS = -lInventorWidget -L../../../libSoXt -lInventorXt -L../../../lib -lInventor -lGL -lXm -lXt -lX11
  
  all: all_ivbin
  
@@ -120,90 +120,101 @@
  all install: all_ivbin
  
 --- inventor/apps/demos/SceneViewer/GNUmakefile.orig	Mon Sep 18 11:40:59 2000
-+++ inventor/apps/demos/SceneViewer/GNUmakefile	Mon May 28 14:48:07 2001
++++ inventor/apps/demos/SceneViewer/GNUmakefile	2014-11-02 13:56:24.263818989 +0100
 @@ -8,7 +8,7 @@
  
  LLDOPTS += -L../../samples/widgets
  
 -LLDLIBS = -lInventorWidget -lInventor -lInventorXt
-+LLDLIBS = -lInventorWidget -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++LLDLIBS = -lInventorWidget -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGL -lXm -lXt -lX11
  
  all: all_ivbin
  
 --- inventor/apps/demos/drop/GNUmakefile.orig	Mon Sep 18 11:40:59 2000
-+++ inventor/apps/demos/drop/GNUmakefile	Mon May 28 14:48:31 2001
++++ inventor/apps/demos/drop/GNUmakefile	2014-11-02 14:12:44.797111291 +0100
 @@ -8,7 +8,7 @@
  	TsBlock.c++ TsPiece.c++ TsPieces.c++ TsField.c++ \
  	TsTrickle.c++ TsEvents.c++ TsRemoval.c++ TsViewer.c++ drop.c++
  
 -LLDLIBS = -lInventor -lInventorXt
-+LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGL -lXm -lXt -lX11
  
  all: all_ivbin
  
 --- inventor/apps/demos/gview/GNUmakefile.orig	Sun Oct 29 16:04:15 2000
-+++ inventor/apps/demos/gview/GNUmakefile	Mon May 28 14:49:04 2001
++++ inventor/apps/demos/gview/GNUmakefile	2014-11-02 14:19:19.057094717 +0100
 @@ -8,7 +8,7 @@
  	gview.c++ DisplayGraph.c++ Error.c++ FieldEditor.c++ \
  	GraphIcon.c++ GraphViewer.c++ NodeCreator.c++
  
 -LLDLIBS = -lInventor -lInventorXt
-+LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGL -lXm -lXt -lX11
  
  all: all_ivbin
  
 --- inventor/apps/demos/maze/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
-+++ inventor/apps/demos/maze/GNUmakefile	Mon May 28 14:49:22 2001
++++ inventor/apps/demos/maze/GNUmakefile	2014-11-02 14:27:50.883739935 +0100
 @@ -8,7 +8,7 @@
  
  CXXFILES = maze.c++
  
 -LLDLIBS = -lInventor -lInventorXt
-+LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGL
  
  all: all_ivbin
  
 --- inventor/apps/demos/noodle/GNUmakefile.orig	Tue Nov 14 03:49:52 2000
-+++ inventor/apps/demos/noodle/GNUmakefile	Mon May 28 14:49:58 2001
++++ inventor/apps/demos/noodle/GNUmakefile	2014-11-02 14:35:34.837053797 +0100
 @@ -16,7 +16,7 @@
  	../../nodes/GeneralizedCylinder/NurbMaker.o \
  	../../nodes/GeneralizedCylinder/Triangulator.o \
  	../../nodes/GeneralizedCylinder/GeneralizedCylinder.o \
 -	-lInventor -lInventorXt
-+	-L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++	-L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lXm -lXt -lX11
  
  all: all_ivbin
  
 --- inventor/apps/demos/qmorf/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
-+++ inventor/apps/demos/qmorf/GNUmakefile	Mon May 28 14:50:42 2001
++++ inventor/apps/demos/qmorf/GNUmakefile	2014-11-02 14:45:41.077028356 +0100
 @@ -6,7 +6,7 @@
  
  CXXFILES = QuadThing.c++ Background.c++ FlashBackground.c++
  
 -LLDLIBS = -lInventor -lInventorXt
-+LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++LLDLIBS = -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGL -lXm -lXt
  
  all: all_ivbin
  
 --- inventor/apps/demos/revo/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
-+++ inventor/apps/demos/revo/GNUmakefile	Mon May 28 14:51:04 2001
++++ inventor/apps/demos/revo/GNUmakefile	2014-11-02 14:47:18.593690930 +0100
 @@ -10,7 +10,7 @@
  
  LLDOPTS += -L../../samples/common
  
 -LLDLIBS = -lcommon -lInventor -lInventorXt
-+LLDLIBS = -lcommon -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++LLDLIBS = -lcommon -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGL -lXm -lXt
  
  all: all_ivbin
  
 --- inventor/apps/demos/textomatic/GNUmakefile.orig	Mon Sep 18 11:41:00 2000
-+++ inventor/apps/demos/textomatic/GNUmakefile	Mon May 28 14:51:23 2001
++++ inventor/apps/demos/textomatic/GNUmakefile	2014-11-02 14:48:04.787022325 +0100
 @@ -8,7 +8,7 @@
  
  LLDOPTS += -L../../samples/common
  
 -LLDLIBS = -lcommon -lInventor -lInventorXt
-+LLDLIBS = -lcommon -L../../../lib -lInventor -L../../../libSoXt -lInventorXt
++LLDLIBS = -lcommon -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGL -lXm -lXt -lX11
  
  all: all_ivbin
+ 
+--- inventor/apps/samples/widgets/GNUmakefile.componentTest.orig	2014-11-02 13:29:26.153887014 +0100
++++ inventor/apps/samples/widgets/GNUmakefile.componentTest	2014-11-02 13:38:47.050530228 +0100
+@@ -5,7 +5,7 @@
+ 
+ CXXFILES = componentTest.c++
+ 
+-LLDLIBS = libInventorWidget.a -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGLw
++LLDLIBS = libInventorWidget.a -L../../../lib -lInventor -L../../../libSoXt -lInventorXt -lGLw -lGL -lXm -lXt -lX11
+ 
+ all install: all_ivbin
  
