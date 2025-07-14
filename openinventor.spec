@@ -120,16 +120,16 @@ Programy demonstrujące możliwości Open Inventora.
 
 %prep
 %setup -q -n inventor
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
+%patch -P4 -p1
+%patch -P5 -p1
+%patch -P7 -p1
+%patch -P8 -p1
+%patch -P9 -p1
+%patch -P10 -p1
 
 %build
 export LD_LIBRARY_PATH="`pwd`/lib:`pwd`/libSoXt"
